@@ -1,3 +1,7 @@
 # npm Enterprise Installer
 
-One-step-installer for npm Enterprise servers
+One-step-installer for npmE servers.
+
+## Supported Platforms
+
+* Ubuntu Trusty
