@@ -11,7 +11,7 @@
     "@npm/npm-registry-couchapp": "2.1.5",
     "@npm/package-whitelist": "0.0.2",
     "@npm/policy-follower": "0.0.7",
-    "@npm/registry-frontdoor": "1.0.5",
+    "@npm/registry-frontdoor": "1.0.7",
     "@npm/validate-and-store": "0.0.6",
     "ndm": "^3.4.0"
   },
