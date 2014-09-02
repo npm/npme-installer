@@ -7,7 +7,7 @@ var yargs = require('yargs'),
     'install': {
       description: 'install:\t install npm Enterprise on a (preferably) blank operating system.',
       command: function(arguments) {
-        require('npme-trusty')();
+        require('../lib')();
       }
     }
   },
@@ -29,3 +29,9 @@ if (yargs.argv.help || !commands[yargs.argv._[0]]) {
 
   commands[yargs.argv._[0]].command(yargs.argv);
 }
+
+
+process.on('uncaughtException', function(err) {
+  logger.error(err.message);
+  process.exit(1);
+});
