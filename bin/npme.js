@@ -17,10 +17,7 @@ var yargs = require('yargs')
       description: 'install:\tinstall npm Enterprise on a (preferably) blank operating system.\n',
       command: function(arguments) {
         // create a bin for npme.
-        util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {
-          logger.success('created npme bin.')
-        });
-
+        util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {});
         require('../lib')();
       }
     },
