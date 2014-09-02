@@ -18,7 +18,13 @@ var yargs = require('yargs')
       command: function(arguments) {
         // create a bin for npme.
         util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {});
-        require('../lib')();
+
+        // have we already installed?
+        if (fs.existsSync('/etc/npme/.license.json ')) {
+          logger.success("npme is already installed, run 'npme update' to upgrade version.");
+        } else {
+          require('../lib')(); // initial install.
+        }
       }
     },
     'start': {
