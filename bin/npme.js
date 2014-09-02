@@ -20,7 +20,7 @@ var yargs = require('yargs')
         util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {});
 
         // have we already installed?
-        if (fs.existsSync('/etc/npme/.license.json ')) {
+        if (fs.existsSync('/etc/npme/.license.json')) {
           logger.success("npme is already installed, run 'npme update' to upgrade version.");
         } else {
           require('../lib')(); // initial install.
