@@ -15,7 +15,7 @@ var yargs = require('yargs')
   commands = {
     'install': {
       description: 'install:\tinstall npm Enterprise on a (preferably) blank operating system.\n',
-      command: function(arguments) {
+      command: function(args) {
         // create a bin for npme.
 
         // have we already installed?
