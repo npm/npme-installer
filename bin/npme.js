@@ -106,7 +106,6 @@ var yargs = require('yargs')
           cwd: '/tmp'
         }, function() {
           logger.success('npm Enterprise was upgraded!');
-          done();
         });
       }
     }
