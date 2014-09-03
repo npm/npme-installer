@@ -103,7 +103,7 @@ var yargs = require('yargs')
       description: "update:\t\tupdate npm Enteprise.",
       command: function(args) {
         util.exec('npm cache clear; npm install npme', {
-          cwd: args['npme-path']
+          cwd: '/tmp'
         }, function() {
           logger.success('npm Enterprise was upgraded!');
           done();
