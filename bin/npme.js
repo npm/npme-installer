@@ -17,13 +17,15 @@ var yargs = require('yargs')
       description: 'install:\tinstall npm Enterprise on a (preferably) blank operating system.\n',
       command: function(arguments) {
         // create a bin for npme.
-        util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {});
 
         // have we already installed?
         if (fs.existsSync('/etc/npme/.license.json')) {
-          logger.success("npme is already installed, run 'npme update' to upgrade version.");
+          logger.success("npme is already installed, upgrading.");
+          util.exec('npme update', {}, function(err) {});
         } else {
-          require('../lib')(); // initial install.
+          util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {
+            require('../lib')(); // initial install.
+          });
         }
       }
     },
