@@ -21,7 +21,26 @@ var yargs = require('yargs')
         // have we already installed?
         if (fs.existsSync('/etc/npme/.license.json')) {
           logger.success("npme is already installed, upgrading.");
-          util.exec('npme update', {}, function(err) {});
+
+          // write the current package.json.
+          fs.writeFileSync(
+            path.resolve(args['npme-path'], './package.json'),
+            JSON.stringify(npmeJson, null, 2)
+          );
+
+          // upgrayedd.
+          async.series([
+            function(done) {
+              util.exec('npm cache clear; npm install --registry=https://enterprise.npmjs.com --always-auth', {
+                cwd: args['npme-path']
+              }, function() {
+                done();
+              });
+            },
+            function(done) {
+              util.exec('ndm restart', {cwd: args['npme-path']}, function(err) { done() });
+            }
+          ]);
         } else {
           util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {
             require('../lib')(); // initial install.
@@ -83,26 +102,11 @@ var yargs = require('yargs')
     'update': {
       description: "update:\t\tupdate npm Enteprise.",
       command: function(args) {
-        // write the current package.json.
-        fs.writeFileSync(
-          path.resolve(args['npme-path'], './package.json'),
-          JSON.stringify(npmeJson, null, 2)
-        );
-
-        // upgrayedd.
-        async.series([
-          function(done) {
-            util.exec('npm cache clear; npm install --registry=https://enterprise.npmjs.com --always-auth', {
-              cwd: args['npme-path']
-            }, function() {
-              done();
-            });
-          },
-          function(done) {
-            util.exec('ndm restart', {cwd: args['npme-path']}, function(err) { done() });
-          }
-        ], function() {
+        util.exec('npm cache clear; npm install npme', {
+          cwd: args['npme-path']
+        }, function() {
           logger.success('npm Enterprise was upgraded!');
+          done();
         });
       }
     }
