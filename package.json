@@ -1,6 +1,6 @@
 {
   "name": "npme",
-  "version": "1.0.30",
+  "version": "1.0.31",
   "description": "One-step-installer for npm Enterprise servers",
   "main": "lib/index.js",
   "bin": "bin/npme.js",
@@ -15,9 +15,9 @@
   "author": "Ben Coe <ben@npmjs.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/npm/npme-trusty/issues"
+    "url": "https://github.com/npm/npme/issues"
   },
-  "homepage": "https://github.com/npm/npme-trusty",
+  "homepage": "https://github.com/npm/npme",
   "devDependencies": {
     "lab": "^4.2.0",
     "nock": "^0.46.0"

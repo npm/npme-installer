@@ -1,11 +1,7 @@
 #!/usr/bin/env node
 
-var yargs = require('yargs')
-    .options('p', {
-      alias: 'npme-path',
-      describe: 'path of npm Enterprise installation',
-      default: '/etc/npme'
-    }),
+var yargs = require('yargs'),
+  npmePath = '/etc/npme',
   fs = require('fs'),
   logger = require('../lib/logger'),
   npme = require('../lib'),
@@ -24,21 +20,21 @@ var yargs = require('yargs')
 
           // write the current package.json.
           fs.writeFileSync(
-            path.resolve(args['npme-path'], './package.json'),
+            path.resolve(npmePath, './package.json'),
             JSON.stringify(npmeJson, null, 2)
           );
 
           // upgrayedd.
           async.series([
             function(done) {
-              util.exec('npm cache clear; npm install --registry=https://enterprise.npmjs.com --always-auth', {
-                cwd: args['npme-path']
+              util.exec('./node_modules/.bin/npm cache clear; ./node_modules/.bin/npm install --registry=https://enterprise.npmjs.com --always-auth', {
+                cwd: npmePath
               }, function() {
                 done();
               });
             },
             function(done) {
-              util.exec('ndm restart', {cwd: args['npme-path']}, function(err) { done() });
+              util.exec('./node_modules/.bin/ndm restart', {cwd: npmePath}, function(err) { done() });
             }
           ]);
         } else {
@@ -49,7 +45,7 @@ var yargs = require('yargs')
     'start': {
       description: 'start:\t\tstart npmE and all its services.\n',
       command: function(arguments) {
-        util.exec('ndm start', {cwd: arguments['npme-path']}, function(err) {
+        util.exec('./node_modules/.bin/ndm start', {cwd: npmePath}, function(err) {
           logger.success('npmE is now running (curl http://localhost:8080).');
         });
       }
@@ -57,20 +53,20 @@ var yargs = require('yargs')
     'stop': {
       description: 'stop:\t\tstop npmE services.\n',
       command: function(arguments) {
-        util.exec('ndm stop', {cwd: arguments['npme-path']}, function(err) {});
+        util.exec('./node_modules/.bin/ndm stop', {cwd: npmePath}, function(err) {});
       }
     },
     'restart': {
       description: 'restart:\trestart npmE services.\n',
       command: function(arguments) {
-        util.exec('ndm restart', {cwd: arguments['npme-path']}, function(err) {});
+        util.exec('./node_modules/.bin/ndm restart', {cwd: npmePath}, function(err) {});
       }
     },
     'add-package': {
       description: 'add-package:\tadd a package to the package-follower whitelist (add-package jquery).\n',
       command: function(arguments) {
         var package = arguments._[1] || '';
-        util.exec('ndm run-script manage-whitelist add-package ' + package, {cwd: arguments['npme-path']}, function(err) {});
+        util.exec('./node_modules/.bin/ndm run-script manage-whitelist add-package ' + package, {cwd: npmePath}, function(err) {});
       }
     },
     'reset-follower': {
@@ -78,18 +74,18 @@ var yargs = require('yargs')
       command: function(args) {
         async.series([
           function(done) {
-            util.exec('ndm stop policy-follower', {
-              cwd: args['npme-path']
+            util.exec('./node_modules/.bin/ndm stop policy-follower', {
+              cwd: npmePath
             }, function() { done(); });
           },
           function(done) {
             util.exec('rm .sequence', {
-              cwd: path.resolve(args['npme-path'], './node_modules/@npm/policy-follower')
+              cwd: path.resolve(npmePath, './node_modules/@npm/policy-follower')
             }, function() { done(); });
           },
           function(done) {
-            util.exec('ndm start policy-follower', {
-              cwd: args['npme-path']
+            util.exec('./node_modules/.bin/ndm start policy-follower', {
+              cwd: npmePath
             }, function() { done(); });
           }
         ], function() {
@@ -100,7 +96,7 @@ var yargs = require('yargs')
     'update': {
       description: "update:\t\tupdate npm Enteprise.",
       command: function(args) {
-        util.exec('npm cache clear; npm install npme', {
+        util.exec(npmePath + '/node_modules/.bin/npm cache clear;' + npmePath + '/node_modules/.bin/npm install npme', {
           cwd: '/tmp'
         }, function() {
           logger.success('npm Enterprise was upgraded!');
