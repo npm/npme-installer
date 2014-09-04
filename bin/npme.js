@@ -42,9 +42,7 @@ var yargs = require('yargs')
             }
           ]);
         } else {
-          util.exec('sudo ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme', {}, function(err) {
-            require('../lib')(); // initial install.
-          });
+          require('../lib')();
         }
       }
     },
@@ -129,8 +127,7 @@ if (yargs.argv.help || !commands[yargs.argv._[0]]) {
   commands[yargs.argv._[0]].command(argv);
 }
 
-
 process.on('uncaughtException', function(err) {
   logger.error(err.message);
-  process.exit(1);
+  process.exit(0);
 });
