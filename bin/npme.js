@@ -20,7 +20,7 @@ var yargs = require('yargs')
     .options('g', {
       alias: 'group',
       describe: 'default npmE group',
-      default: 'group'
+      default: 'ubuntu'
     }),
   fs = require('fs'),
   logger = require('../lib/logger'),
@@ -149,6 +149,7 @@ if (yargs.argv.help || !commands[yargs.argv._[0]]) {
 } else {
   // update config singleton and run command.
   var argv = yargs.normalize().argv;
+  console.log(argv)
 
   commands[yargs.argv._[0]].command(argv);
 }
