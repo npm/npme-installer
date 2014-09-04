@@ -149,8 +149,7 @@ if (yargs.argv.help || !commands[yargs.argv._[0]]) {
 } else {
   // update config singleton and run command.
   var argv = yargs.normalize().argv;
-  console.log(argv)
-
+  
   commands[yargs.argv._[0]].command(argv);
 }
 
