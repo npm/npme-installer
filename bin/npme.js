@@ -5,22 +5,6 @@ var yargs = require('yargs')
       alias: 'npme-path',
       describe: 'path of npm Enterprise installation',
       default: '/etc/npme'
-    })
-    .options('s', {
-      alias: 'sudo',
-      describe: 'should privileged commands be run with sudo?',
-      boolean: true,
-      default: true
-    })
-    .options('u', {
-      alias: 'user',
-      describe: 'default npmE user',
-      default: 'ubuntu'
-    })
-    .options('g', {
-      alias: 'group',
-      describe: 'default npmE group',
-      default: 'ubuntu'
     }),
   fs = require('fs'),
   logger = require('../lib/logger'),
@@ -58,17 +42,7 @@ var yargs = require('yargs')
             }
           ]);
         } else {
-          var command = 'ln -s --force ' + path.resolve('../.bin/npme') + ' /usr/bin/npme';
-
-          if (args.sudo) command = 'sudo ' + command;
-
-          util.exec(command, {}, function(err) {
-            require('../lib')({
-              sudo: args.sudo,
-              user: args.user,
-              group: args.group
-            }); // initial install.
-          });
+          require('../lib')();
         }
       }
     },
@@ -149,7 +123,7 @@ if (yargs.argv.help || !commands[yargs.argv._[0]]) {
 } else {
   // update config singleton and run command.
   var argv = yargs.normalize().argv;
-  
+
   commands[yargs.argv._[0]].command(argv);
 }
 
