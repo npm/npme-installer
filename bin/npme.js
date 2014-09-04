@@ -155,5 +155,5 @@ if (yargs.argv.help || !commands[yargs.argv._[0]]) {
 
 process.on('uncaughtException', function(err) {
   logger.error(err.message);
-  process.exit(1);
+  process.exit(0);
 });
