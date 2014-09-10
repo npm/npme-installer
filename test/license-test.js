@@ -38,4 +38,22 @@ lab.experiment('License', function() {
       done();
     });
   });
+
+  lab.experiment('phoneHome', function() {
+    lab.it('phones home to the appropriate endpoint', function(done) {
+      var license = new License({
+        userEmail: 'ben@example.com', // email of user to validate license for.
+        licenseKey: 'fake-key'
+      });
+
+      var licenseApi = nock('https://license.npmjs.com')
+        .post('/license/b7e73bbc-ee47-45fa-b62d-4282a9e29f97/ben@example.com/fake-key/activated')
+        .reply(200);
+
+      license.phoneHome(function(err) {
+        Lab.expect(err).to.eql(null);
+        done();
+      });
+    });
+  });
 });
