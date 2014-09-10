@@ -15,7 +15,7 @@ One-step-installer for npmE servers.
 * upgrade npm to 2.x.x on the VM you have provisioned:
   * `sudo npm install npm@2.0.0-beta.3 -g`
 * npm Enterprise must be installed from an account that has passwordless sudo:
-  * as part of the installation process npm Enteprirse creates the `npme` user.
+  * as part of the installation process npm Enterprise creates the `npme` user.
 
 ## Installing
 
