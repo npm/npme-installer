@@ -1,6 +1,22 @@
 #!/usr/bin/env node
 
-var yargs = require('yargs'),
+var async = require('async'),
+  yargs = require('yargs')
+    .options('u', {
+      alias: 'user',
+      default: 'npme'
+    })
+    .options('g', {
+      alias: 'group',
+      default: 'npme'
+    })
+    .options('s', {
+      alias: 'sudo',
+      default: true
+    })
+    .options('p', {
+      alias: 'platform'
+    }),
   npmePath = '/etc/npme',
   fs = require('fs'),
   logger = require('../lib/logger'),
@@ -27,7 +43,11 @@ var yargs = require('yargs'),
           // upgrayedd.
           async.series([
             function(done) {
-              util.exec('./node_modules/.bin/npm cache clear; ./node_modules/.bin/npm install --registry=https://enterprise.npmjs.com --always-auth', {
+              var command = 'su npme -c "./node_modules/.bin/npm cache clear; ./node_modules/.bin/npm install --registry=https://enterprise.npmjs.com --always-auth"';
+
+              if (args.sudo.toString() === 'true') command = 'sudo ' + command;
+
+              util.exec(command, {
                 cwd: npmePath
               }, function() {
                 done();
@@ -38,7 +58,7 @@ var yargs = require('yargs'),
             }
           ]);
         } else {
-          require('../lib')();
+          require('../lib')(args);
         }
       }
     },
