@@ -12,6 +12,8 @@ One-step-installer for npmE servers.
 * provision a VM for one of our supported platforms.
 * ensure that npm and Node.js 0.10.x are installed:
   * https://github.com/joyent/node/wiki/installing-node.js-via-package-manager
+* upgrade npm to 2.x.x on the VM you have provisioned:
+  * `sudo npm install npm@2.0.0-beta.3 -g`
 * npm Enterprise must be installed from an account that has passwordless sudo:
   * as part of the installation process npm Enteprirse creates the `npme` user.
 
