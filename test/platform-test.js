@@ -24,7 +24,7 @@ lab.experiment('Platform', function() {
           cb(Error('not found'));
         }
       }))(function(platform) {
-        Lab.expect(platform.toString()).to.match(/npme-trusty/) // story checks out, we're running apt.
+        Lab.expect(platform.toString()).to.match(/npme-unknown/) // story checks out, we're running apt.
         done();
       });
     });
@@ -57,7 +57,7 @@ lab.experiment('Platform', function() {
           cb(null, { os: 'linux', dist: 'Ubuntu Linux', codename: 'blargy', release: '14.04' });
         }
       }))(function(platform) {
-        Lab.expect(platform.toString()).to.match(/npme-trusty/) // story checks out, we're running apt.
+        Lab.expect(platform.toString()).to.match(/npme-unknown/) // story checks out, we're running apt.
         done();
       });
     });
