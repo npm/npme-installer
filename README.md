@@ -1,3 +1,38 @@
+# Docker Image for the npm Enterprise Installer
+
+sudo docker run -ti marcellodesales/npme
+
+```
+$ sudo docker run -t -i marcellodesales/npme 
+npm Enterprise. It's npm, but you run it yourself!
+
+install:	install npm Enterprise on a (preferably) blank operating system.
+start:		start npmE and all its services.
+stop:		stop npmE services.
+restart:	restart npmE services.
+add-package:	add a package to the package-follower whitelist (add-package jquery).
+reset-follower:	reindex from the public registry all packages listed in whitelist.
+update:		update npm Enteprise.
+
+Options:
+  -u, --user   [default: "npme"]
+  -g, --group  [default: "npme"]
+  -s, --sudo   [default: true]
+
+```
+
+You need to install and obtain a license.
+
+```
+$ sudo docker run -t -i marcellodesales/npme install
+[?] this will install npmE on this server (you should only run this on a dedicated machine), continue? Yes
+[?] enter your billing email: example@mail.com
+[?] enter your license key: @#!@34%$@#
+
+```
+
+The manual steps are described below:
+
 # npm Enterprise Installer
 
 One-step-installer for npmE servers.
