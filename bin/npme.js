@@ -23,7 +23,7 @@ var async = require('async'),
   npme = require('../lib'),
   path = require('path'),
   util = new (require('../lib/util'))(),
-  npmeJson = require('../lib/npme'),
+  npmeJson = require('../node_modules/npme-ansible/ansible/librarian_roles/bcoe.npme/files/package.json'),
   commands = {
     'install': {
       description: 'install:\tinstall npm Enterprise on a (preferably) blank operating system.\n',
