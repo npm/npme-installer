@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "bin": "bin/npme.js",
   "scripts": {
-    "test": "lab -c --timeout=8000",
+    "test": "lab -c --timeout 8000",
     "postinstall": "node ./bin/npme.js install"
   },
   "repository": {
