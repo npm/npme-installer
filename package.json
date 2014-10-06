@@ -28,6 +28,7 @@
     "getos": "^2.2.0",
     "inquirer": "^0.6.0",
     "lodash": "^2.4.1",
+    "npme-ansible": "^1.0.58",
     "npme-centos65": "^1.0.0",
     "npme-trusty": "^1.2.15",
     "npme-unknown": "^1.0.0",
