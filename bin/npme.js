@@ -86,7 +86,9 @@ var async = require('async'),
       description: 'add-package:\tadd a package to the package-follower whitelist (add-package jquery).\n',
       command: function(arguments) {
         var package = arguments._[1] || '';
-        util.exec('./node_modules/.bin/ndm run-script manage-whitelist add-package ' + package, {cwd: npmePath}, function(err) {});
+        util.exec('./node_modules/.bin/ndm run-script manage-whitelist add-package ' + package, {cwd: npmePath}, function(err) {
+          util.exec('sudo chown npme:npme ./whitelist', {cwd: npmePath}, function(err) {});
+        });
       }
     },
     'reset-follower': {
