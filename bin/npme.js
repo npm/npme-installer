@@ -141,7 +141,7 @@ var async = require('async'),
       description: "update-license\t\tre-generate the .license.json file.",
       command: function(args) {
         var license = new (require('../lib/license'))();
-        license.update();
+        license.update(function() {});
       }
     }
   },
