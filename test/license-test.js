@@ -38,4 +38,33 @@ lab.experiment('License', function() {
       done();
     });
   });
+
+  lab.experiment('update', function() {
+    lab.it('prompts for email and key, and saves new license to disk', function(done) {
+      var license = new License({
+        inquirer: {
+          prompt: function(questions, cb) {
+            cb({
+              userEmail: 'ben2@example.com',
+              licenseKey: 'another-key'
+            })
+          }
+        },
+        fs: {
+          writeFileSync: function(path, contents) {
+            contents = JSON.parse(contents);
+            Lab.expect(contents.apple).to.eql('banana');
+            return done();
+          }
+        }
+      });
+
+      var licenseApi = nock('https://license.npmjs.com')
+        .get('/license/b7e73bbc-ee47-45fa-b62d-4282a9e29f97/ben2@example.com/another-key')
+        .reply(200, JSON.stringify({apple: 'banana'}));
+
+      license.update(function() {});
+    });
+  });
+
 });
