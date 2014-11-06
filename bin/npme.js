@@ -26,7 +26,7 @@ var async = require('async'),
   npmeJson = require('../node_modules/npme-ansible/ansible/librarian_roles/bcoe.npme/files/package.json'),
   commands = {
     'install': {
-      description: 'install:\t\tinstall npm Enterprise on a (preferably) blank operating system.\n',
+      description: 'install\t\t\tinstall npm Enterprise on a (preferably) blank operating system.\n',
       command: function(args) {
         // create a bin for npme.
 
@@ -63,7 +63,7 @@ var async = require('async'),
       }
     },
     'start': {
-      description: 'start:\t\t\tstart npmE and all its services.\n',
+      description: 'start\t\t\tstart npmE and all its services.\n',
       command: function(arguments) {
         util.exec('./node_modules/.bin/ndm start', {cwd: npmePath}, function(err) {
           logger.success('npmE is now running (curl http://localhost:8080).');
@@ -71,19 +71,19 @@ var async = require('async'),
       }
     },
     'stop': {
-      description: 'stop:\t\t\tstop npmE services.\n',
+      description: 'stop\t\t\tstop npmE services.\n',
       command: function(arguments) {
         util.exec('./node_modules/.bin/ndm stop', {cwd: npmePath}, function(err) {});
       }
     },
     'restart': {
-      description: 'restart:\t\trestart npmE services.\n',
+      description: 'restart\t\t\trestart npmE services.\n',
       command: function(arguments) {
         util.exec('./node_modules/.bin/ndm restart', {cwd: npmePath}, function(err) {});
       }
     },
     'add-package': {
-      description: 'add-package:\t\tadd a package to the package-follower whitelist (add-package jquery).\n',
+      description: 'add-package\t\tadd a package to the package-follower whitelist (add-package jquery).\n',
       command: function(arguments) {
         var package = arguments._[1] || '';
         util.exec('./node_modules/.bin/ndm run-script manage-whitelist add-package ' + package, {cwd: npmePath}, function(err) {
@@ -92,7 +92,7 @@ var async = require('async'),
       }
     },
     'reset-follower': {
-      description: 'reset-follower:\t\treindex from the public registry all packages listed in whitelist.\n',
+      description: 'reset-follower\t\treindex from the public registry all packages listed in whitelist.\n',
       command: function(args) {
         async.series([
           function(done) {
@@ -116,7 +116,7 @@ var async = require('async'),
       }
     },
     'update': {
-      description: "update:\t\t\tupdate npm Enteprise.\n",
+      description: "update\t\t\tupdate npm Enteprise.\n",
       command: function(args) {
         util.exec(npmePath + '/node_modules/.bin/npm cache clear;' + npmePath + '/node_modules/.bin/npm install npme', {
           cwd: '/tmp'
@@ -126,7 +126,7 @@ var async = require('async'),
       }
     },
     'generate-scripts': {
-      description: "generate-scripts:\tre-generate scripts from service.json.\n",
+      description: "generate-scripts\tre-generate scripts from service.json.\n",
       command: function(args) {
         var command = './node_modules/.bin/ndm generate --uid=' + args.user + ' --gid=' + args.group;
 
@@ -138,7 +138,7 @@ var async = require('async'),
       }
     },
     'update-license': {
-      description: "update-license:\t\tre-generate the .license.json file.",
+      description: "update-license\t\tre-generate the .license.json file.",
       command: function(args) {
         var license = new (require('../lib/license'))();
         license.update();
