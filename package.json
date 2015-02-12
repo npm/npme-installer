@@ -17,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/npm/npme/issues"
   },
-  "homepage": "https://github.com/npm/npme",
+  "homepage": "https://www.npmjs.com/enterprise",
   "devDependencies": {
     "lab": "^4.2.0",
     "nock": "^0.46.0"
