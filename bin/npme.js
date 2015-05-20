@@ -21,6 +21,7 @@ var async = require('async'),
   fs = require('fs'),
   logger = require('../lib/logger'),
   npme = require('../lib'),
+  License = require('../lib/license'),
   path = require('path'),
   util = new (require('../lib/util'))(),
   npmeJson = require('../node_modules/npme-ansible/ansible/librarian_roles/bcoe.npme/files/package.json'),
@@ -140,8 +141,18 @@ var async = require('async'),
     'update-license': {
       description: "update-license\t\tre-generate the .license.json file.",
       command: function(args) {
-        var license = new (require('../lib/license'))();
+        var license = new License();
         license.update(function() {});
+      }
+    },
+    'validate-license': {
+      description: 'check license validity (without touching the .license.json file.\n',
+      command: function(args) {
+        var license = new License();
+        license.interview(function() {
+          // Otherwise we throw.
+          console.log('license is valid.');
+        });
       }
     }
   },
