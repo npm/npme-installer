@@ -13,11 +13,12 @@ lab.experiment('License', function() {
       });
 
       var licenseApi = nock('https://license.npmjs.com')
-        .get('/b7e73bbc-ee47-45fa-b62d-4282a9e29f97/ben@example.com/fake-key')
+        .get('/license/b7e73bbc-ee47-45fa-b62d-4282a9e29f97/ben@example.com/fake-key')
         .reply(404);
 
       license.validateLicense(function(err) {
         Lab.expect(err.message).to.eql('invalid license');
+        licenseApi.done();
         done();
       });
     });
@@ -35,6 +36,7 @@ lab.experiment('License', function() {
 
     license.validateLicense(function(err) {
       Lab.expect(license.license.apple).to.eql(404);
+      licenseApi.done();
       done();
     });
   });
@@ -54,6 +56,7 @@ lab.experiment('License', function() {
           writeFileSync: function(path, contents) {
             contents = JSON.parse(contents);
             Lab.expect(contents.apple).to.eql('banana');
+            licenseApi.done();
             return done();
           }
         }
