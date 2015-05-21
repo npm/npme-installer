@@ -1,5 +1,7 @@
 # npm Enterprise Installer
 
+[![Build Status](https://travis-ci.org/npm/npme-installer.svg?branch=master)](https://travis-ci.org/npm/npme-installer)
+
 One-step-installer for npmE servers.
 
 ## Supported Platforms
