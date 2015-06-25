@@ -91,7 +91,11 @@ var async = require('async'),
         // all defaults to true. you must set it to false ...
         // if you want to only add specific versions of a package.
         var all = true;
-        if(arguments.a !== undefined) all = arguments.a;
+
+
+        console.log(arguments)
+
+        if(arguments.a !== undefined) all = arguments.a === 'false'?false:arguments.a;
         if(arguments['all-versions'] !== undefined) all = arguments['all-versions'];
 
         all = all?'true':'false';
