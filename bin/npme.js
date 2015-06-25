@@ -87,7 +87,16 @@ var async = require('async'),
       description: 'add-package\t\tadd a package to the package-follower whitelist (add-package jquery).\n',
       command: function(arguments) {
         var package = arguments._[1] || '';
-        util.exec('./node_modules/.bin/ndm run-script manage-whitelist add-package ' + package, {cwd: npmePath}, function(err) {
+
+        // all defaults to true. you must set it to false ...
+        // if you want to only add specific versions of a package.
+        var all = true;
+        if(arguments.a !== undefined) all = arguments.a;
+        if(arguments['all-versions'] !== undefined) all = arguments['all-versions'];
+
+        all = all?'true':'false';
+
+        util.exec('./node_modules/.bin/ndm run-script manage-whitelist add-package -a '+all+' '+ package, {cwd: npmePath}, function(err) {
           util.exec('sudo chown npme:npme ./whitelist', {cwd: npmePath}, function(err) {});
         });
       }
