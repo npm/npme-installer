@@ -93,8 +93,6 @@ var async = require('async'),
         var all = true;
 
 
-        console.log(arguments)
-
         if(arguments.a !== undefined) all = arguments.a === 'false'?false:arguments.a;
         if(arguments['all-versions'] !== undefined) all = arguments['all-versions'];
 
