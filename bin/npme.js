@@ -15,7 +15,12 @@ var async = require('async'),
       default: true
     })
     .options('p', {
-      alias: 'platform'
+      alias: 'platform',
+      describe: 'what platform is the installer being run on? see ./lib/platform.js'
+    })
+    .option('r', {
+      alias: 'proxy',
+      describe: 'provide a proxy URL for fetching the npme license.'
     }),
   npmePath = '/etc/npme',
   fs = require('fs'),
@@ -152,14 +157,18 @@ var async = require('async'),
     'update-license': {
       description: "update-license\t\tre-generate the .license.json file.",
       command: function(args) {
-        var license = new License();
+        var license = new License({
+          proxy: args.proxy
+        });
         license.update(function() {});
       }
     },
     'validate-license': {
       description: 'check license validity (without touching the .license.json file.\n',
       command: function(args) {
-        var license = new License();
+        var license = new License({
+          proxy: args.proxy
+        });
         license.interview(function() {
           // Otherwise we throw.
           console.log('license is valid.');
