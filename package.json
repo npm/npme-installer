@@ -1,6 +1,6 @@
 {
   "name": "npme",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "One-step-installer for npm Enterprise servers",
   "main": "lib/index.js",
   "bin": "bin/npme.js",
