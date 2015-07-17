@@ -18,6 +18,10 @@ var async = require('async'),
       alias: 'platform',
       describe: 'what platform is the installer being run on? see ./lib/platform.js'
     })
+    .option('t', {
+      alias: 'tarball-url',
+      describe: 'path to CouchDB binary tarball URL'
+    })
     .option('r', {
       alias: 'proxy',
       describe: 'provide a proxy URL for fetching the npme license.'
