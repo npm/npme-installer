@@ -53,7 +53,7 @@ var async = require('async'),
           // upgrayedd.
           async.series([
             function(done) {
-              var command = 'su npme -c "./node_modules/.bin/npm cache clear; ./node_modules/.bin/npm install --registry=https://enterprise.npmjs.com --always-auth"';
+              var command = 'su npme -c "./node_modules/.bin/npm cache clear; ./node_modules/.bin/npm install --registry=https://enterprise.npmjs.com"';
 
               if (args.sudo.toString() === 'true') command = 'sudo ' + command;
 
