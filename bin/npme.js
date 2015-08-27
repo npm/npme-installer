@@ -28,7 +28,20 @@ var argv = require('yargs')
   .argv
 
 // install the replicated appliance.
-function install (yargs, argv) {
+function install (yargs) {
+  var argv = yargs
+    .usage('$0')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('install a brand new npm on-site appliance')
+    .argv
+
   exec('cp replicated-license-retrieval.json /etc', argv.sudo, function () {
     request.get('https://get.replicated.com', function (err, res, content) {
       if (err) {
@@ -55,19 +68,73 @@ function install (yargs, argv) {
   })
 }
 
-function addPackage (yargs, argv) {
+function addPackage (yargs) {
+  // we'll swap this out once I get the argv
+  // functionality merged into yargs.
+  var argv = yargs
+    .usage('$0 package-name[@version]')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog("add a new package to your appliance's whitelist")
+    .argv
+
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
 }
 
-function resetFollower (yargs, argv) {
+function resetFollower (yargs) {
+  var argv = yargs
+    .usage('$0')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('reset the sequence # of the public registry follower')
+    .argv
+
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
 }
 
-function updateLicense (yargs, argv) {
+function updateLicense (yargs) {
+  var argv = yargs
+    .usage('$0')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('update the license on your npm on-site appliance')
+    .argv
+
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
 }
 
-function ssh (yargs, argv) {
+function ssh (yargs) {
+  var argv = yargs
+    .usage('$0')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('ssh into the npm on-site appliance')
+    .argv
+
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
 }
 
