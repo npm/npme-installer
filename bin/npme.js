@@ -8,7 +8,7 @@ var request = require('request')
 var spawn = require('child_process').spawn
 var cwd = path.resolve(__dirname, '../')
 
-var argv = require('yargs')
+require('yargs')
   .usage('$0 [command] [arguments]')
   .help('h')
   .alias('h', 'help')
@@ -17,6 +17,8 @@ var argv = require('yargs')
   .command('add-package', 'add a package to your whitelist', addPackage)
   .command('reset-follower', 'reset the public registry follower', resetFollower)
   .command('update-license', 'update the license associated with your npm on-site appliance', updateLicense)
+  .version(require('../package').version, 'v')
+  .alias('v', 'version')
   .option('sudo', {
     alias: 's',
     description: 'should shell commands be run as sudo user',
