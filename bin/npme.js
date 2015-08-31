@@ -45,7 +45,7 @@ function install (yargs) {
     .argv
 
   exec('cp replicated-license-retrieval.json /etc', argv.sudo, function () {
-    request.get('https://get.replicated.com/beta', function (err, res, content) {
+    request.get('https://get.replicated.com', function (err, res, content) {
       if (err) {
         console.log(chalk.red(err.message))
         return
