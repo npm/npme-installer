@@ -1,20 +1,20 @@
 {
-  "name": "npme",
+  "name": "npmo",
   "version": "3.1.5",
-  "description": "One-step-installer for npm Enterprise servers",
+  "description": "One-step-installer for npm on-site servers",
   "bin": "bin/npme.js",
   "scripts": {
     "pretest": "standard",
-    "postinstall": "node ./bin/npme.js install"
+    "postinstall": "node ./bin/npmo.js install"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com:npm/npme.git"
+    "url": "git@github.com:npm/npmo-installer.git"
   },
   "author": "Ben Coe <ben@npmjs.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/npm/npme/issues"
+    "url": "https://github.com/npm/npmo-installer/issues"
   },
   "homepage": "https://www.npmjs.com/enterprise",
   "dependencies": {
