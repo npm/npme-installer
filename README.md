@@ -1,6 +1,6 @@
 # npm on-site Installer
 
-[![Build Status](https://travis-ci.org/npm/npme-installer.svg?branch=master)](https://travis-ci.org/npm/npme-installer)
+[![Build Status](https://travis-ci.org/npm/npmo-installer.svg?branch=master)](https://travis-ci.org/npm/npmo-installer)
 
 One-step-installer for npm on-site.
 
