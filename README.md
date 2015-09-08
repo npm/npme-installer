@@ -1,8 +1,8 @@
-# npm on-site Installer
+# npm On-Site Installer
 
 [![Build Status](https://travis-ci.org/npm/npmo-installer.svg?branch=master)](https://travis-ci.org/npm/npmo-installer)
 
-One-step-installer for npm on-site.
+One-step-installer for npm On-Site.
 
 ## Supported Platforms
 
@@ -24,7 +24,7 @@ Once installation is complete visit __https://your-server-address:8800__ and byp
 
 ## Connecting to the Registry
 
-By default the npm on-site registry will be availble on __http://your-server-address:8080__.
+By default the npm On-Site registry will be availble on __http://your-server-address:8080__.
 
 Simply run:
 

@@ -12,11 +12,11 @@ require('yargs')
   .usage('$0 [command] [arguments]')
   .help('h')
   .alias('h', 'help')
-  .command('install', 'install the npm on-site appliance', install)
-  .command('ssh', 'ssh into the npm on-site appliance', ssh)
+  .command('install', 'install the npm On-Site appliance', install)
+  .command('ssh', 'ssh into the npm On-Site appliance', ssh)
   .command('add-package', 'add a package to your whitelist', addPackage)
   .command('reset-follower', 'reset the public registry follower', resetFollower)
-  .command('update-license', 'update the license associated with your npm on-site appliance', updateLicense)
+  .command('update-license', 'update the license associated with your npm On-Site appliance', updateLicense)
   .version(require('../package').version, 'v')
   .alias('v', 'version')
   .option('sudo', {
@@ -41,7 +41,7 @@ function install (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('install a brand new npm on-site appliance')
+    .epilog('install a brand new npm On-Site appliance')
     .argv
 
   exec('cp replicated-license-retrieval.json /etc', argv.sudo, function () {
@@ -54,14 +54,14 @@ function install (yargs) {
       fs.writeFileSync(path.resolve(cwd, './install.sh'), content, 'utf-8')
 
       exec('sh install.sh', argv.sudo, function () {
-        console.log(chalk.bold.green('Congrats! Your npm on-site server is now up and running \\o/'))
+        console.log(chalk.bold.green('Congrats! Your npm On-Site server is now up and running \\o/'))
         console.log(chalk.bold('\nThere are just a few final steps:\n'))
         ;[
           'Access your server via HTTPS on port 8800',
           'Proceed passed the HTTPS connection security warning (a selfsigned cert is being used initially)',
           'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
           'Configure your npm instance & click "Save".',
-          'Visit https://docs.npmjs.com/, for information about using npm on-site or contact support@npmjs.com'
+          'Visit https://docs.npmjs.com/, for information about using npm On-Site or contact support@npmjs.com'
         ].forEach(function (s, i) {
           console.log(chalk.bold('Step ' + (i + 1) + '.') + ' ' + s)
         })
@@ -117,7 +117,7 @@ function updateLicense (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('update the license on your npm on-site appliance')
+    .epilog('update the license on your npm On-Site appliance')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
@@ -134,7 +134,7 @@ function ssh (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('ssh into the npm on-site appliance')
+    .epilog('ssh into the npm On-Site appliance')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
