@@ -1,12 +1,12 @@
-# npm Enterprise Installer
+# npm On-Site Installer
 
-[![Build Status](https://travis-ci.org/npm/npme-installer.svg?branch=master)](https://travis-ci.org/npm/npme-installer)
+[![Build Status](https://travis-ci.org/npm/npmo-installer.svg?branch=master)](https://travis-ci.org/npm/npmo-installer)
 
-One-step-installer for npmE servers.
+One-step-installer for npm On-Site.
 
 ## Supported Platforms
 
-Modern versions of Ubuntu, Debian, Centos, Red Hat & Fedora
+Modern versions of Ubuntu (12.04+), Debian, Centos (7+), Red Hat & Fedora
 
 ## Prerequisites
 
@@ -16,8 +16,31 @@ Modern versions of Ubuntu, Debian, Centos, Red Hat & Fedora
 
 ## Installing
 
-```bash
-npm install npme
+```shell
+sudo npm install npmo -g --unsafe
+```
+
+Once installation is complete visit __https://your-server-address:8800__ and bypass the security warning (you can provide your own certificate later to prevent this warning). You will be presented with a management UI which allows you to configure your npm Enterprise appliance.
+
+## Connecting to the Registry
+
+By default the npm On-Site registry will be availble on __http://your-server-address:8080__.
+
+Simply run:
+
+```shell
+npm login --scope=@my-company-name --registry=http://your-server-address:8080
+```
+
+And publish modules using the corresponding scope name:
+
+```json
+{
+  "name": "@my-company-name/my-module",
+  "repository": {
+    "url": "git://github.mycompany.com/myco/mypackage.git"
+  }
+}
 ```
 
 ## Updating
