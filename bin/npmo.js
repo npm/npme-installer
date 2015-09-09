@@ -66,7 +66,9 @@ function install (yargs) {
             chalk.bold.green('support@npmjs.com ') +
             chalk.bold.red('and we can help get you up and running'))
         } else {
-          exec('cp -f brand.css /etc/replicated/brand/brand.css', function () {})
+          exec('mkdir -p /etc/replicated/brand/', argv.sudo, function () {
+            exec('cp -f brand.css /etc/replicated/brand/brand.css', argv.sudo, function () {})
+          })
 
           console.log(chalk.bold.green('Congrats! Your npm On-Site server is now up and running \\o/'))
           console.log(chalk.bold('\nThere are just a few final steps:\n'))
