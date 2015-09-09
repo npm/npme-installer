@@ -1,0 +1,216 @@
+/* The color of the page background */
+body {
+  background-color: #333;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1.page-title {
+  color: #fff;
+}
+/* Top nav bar, background and border colors */
+.navbar-inverse{
+  border-color: #101010;
+  background-color: #222;
+}
+
+/* Header links, unselected */
+.navbar-inverse .navbar-nav>li>a {
+  color: #9d9d9d;
+}
+
+/* Header links, when selected */
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+  color: #fff;
+  background-color: #080808;
+}
+
+/* The app status (starting, stopping, etc) tile on the dashboard */
+ .widget-app-status {
+  background-color: #2A747B;
+ }
+ .widget-app-status .graphic {
+  color: #fff;
+ }
+.widget-app-status .title {
+  color: #fff;
+}
+.widget-app-status .actions .btn-warning { /* Cancel, Stop Now */
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.widget-app-status .actions .btn-success {  /* Start Now */
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+
+/* The app update tile (up to date, etc) on the dashboard */
+.widget-app-update {
+  background-color: #12B0C5;
+  color: #fff;
+}
+.widget-app-update .title {
+  color: #fff;
+}
+.widget-app-update .last-checked {
+  color: #fff;
+}
+.widget-app-update .current-version {
+  color: #fff;
+}
+#dashboard a {   /* This is the view release history link... */
+  color: #fff;
+}
+
+.widget-app-backup {
+  background-color: #887880;
+}
+.widget-app-backup .graphic {
+  color: #fff;
+}
+.widget-app-backup .title {
+  color: #fff;
+}
+
+/* Metrics, null == app not running or unsupported */
+.widget-null-metrics {
+  background-color: #483840;
+}
+.widget-null-metrics .widget-null-content {
+  color: #999;
+  border-color: #999;
+}
+.metrics-title {
+  color: #fff;
+}
+.metrics-footer {
+  color: #fff;
+}
+.widget-cpu-metrics {
+  background-color: #ec663c;
+}
+.widget-cpu-metrics .metrics-title {
+  color: #fff;
+}
+.widget-cpu-metrics .widget-title-host {
+  color: #ccc;
+}
+.widget-cpu-metrics .metrics-footer {
+  color: #fff;
+}
+.widget-memory-metrics {
+  background-color: #8A4F7D;
+}
+.widget-memory-metrics .metrics-title {
+  color: #fff;
+}
+.widget-memory-metrics .widget-title-host {
+  color: #ccc;
+}
+.widget-memory-metrics .metrics-footer {
+  color: #fff;
+}
+
+/* Settings page */
+.configure-group h3 {
+  color: #fff;
+}
+.label-heading {
+  color: #fff;
+}
+.configure-group p {
+  color: #A4A9AC;
+}
+#sections .well-dark { /* Groups well on left */
+  background-color: #222;
+  border-color: #222;
+}
+.configure-nav a { /* Groups well text */
+  color: #a4a9ac;
+}
+
+.button-checkbox .btn-unchecked {
+  font-weight:500;
+  color: #85898B;
+  background-color: #333;
+  border-color: #525455;
+}
+.button-checkbox .btn-unchecked:hover {
+  background-color:#525455;
+  color:#fff;
+  text-shadow:none
+}
+.button-checkbox .btn-unchecked:focus {
+  background-color:#525455;
+  color:#fff;
+  text-shadow:none
+}
+
+
+.button-checkbox .btn-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+/* Tables are used on Audit Log, Hosts and Release History screen */
+.table .table {
+  background-color: #333;
+  font-size: 12px;
+  border-bottom: 1px solid #fff;
+}
+.table-striped>tbody>tr:nth-child(even)>td,
+.table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #555;
+}
+.table-striped>tbody>tr:nth-child(odd)>td,
+.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #444;
+}
+
+
+/* Used during the setup process */
+.btn-selfsigned {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.btn-selfsigned:hover {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+
+.btn-uploadcert {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-uploadcert:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.btn-importlicense {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-importlicense:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+
+.btn-secureconsole {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.btn-secureconsole:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}

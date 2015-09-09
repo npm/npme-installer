@@ -25,6 +25,10 @@ require('yargs')
     boolean: true,
     default: true
   })
+  .option('release', {
+    alias: 'r',
+    description: 'what release of replicated should be used (defaults to stable)'
+  })
   .example('$0 add-package lodash', 'add the lodash package to your whitelist')
   .demand(1, 'you must provide a command to run')
   .argv
@@ -45,7 +49,9 @@ function install (yargs) {
     .argv
 
   exec('cp replicated-license-retrieval.json /etc', argv.sudo, function () {
-    request.get('https://get.replicated.com', function (err, res, content) {
+    var release = argv.release ? '/' + argv.release : ''
+
+    request.get('https://get.replicated.com' + release, function (err, res, content) {
       if (err) {
         console.log(chalk.red(err.message))
         return
@@ -53,18 +59,27 @@ function install (yargs) {
 
       fs.writeFileSync(path.resolve(cwd, './install.sh'), content, 'utf-8')
 
-      exec('sh install.sh', argv.sudo, function () {
-        console.log(chalk.bold.green('Congrats! Your npm On-Site server is now up and running \\o/'))
-        console.log(chalk.bold('\nThere are just a few final steps:\n'))
-        ;[
-          'Access your server via HTTPS on port 8800',
-          'Proceed passed the HTTPS connection security warning (a selfsigned cert is being used initially)',
-          'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
-          'Configure your npm instance & click "Save".',
-          'Visit https://docs.npmjs.com/, for information about using npm On-Site or contact support@npmjs.com'
-        ].forEach(function (s, i) {
-          console.log(chalk.bold('Step ' + (i + 1) + '.') + ' ' + s)
-        })
+      exec('sh install.sh', argv.sudo, function (code) {
+        if (code !== 0) {
+          console.log(chalk.bold.red('oh no! something went wrong during the install...\r\n') +
+            chalk.bold.red('contact ') +
+            chalk.bold.green('support@npmjs.com ') +
+            chalk.bold.red('and we can help get you up and running'))
+        } else {
+          exec('cp -f brand.css /etc/replicated/brand/brand.css', function () {})
+
+          console.log(chalk.bold.green('Congrats! Your npm On-Site server is now up and running \\o/'))
+          console.log(chalk.bold('\nThere are just a few final steps:\n'))
+          ;[
+            'Access your server via HTTPS on port 8800',
+            'Proceed passed the HTTPS connection security warning (a selfsigned cert is being used initially)',
+            'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
+            'Configure your npm instance & click "Save".',
+            'Visit https://docs.npmjs.com/, for information about using npm On-Site or contact support@npmjs.com'
+          ].forEach(function (s, i) {
+            console.log(chalk.bold('Step ' + (i + 1) + '.') + ' ' + s)
+          })
+        }
       })
     })
   })
@@ -151,8 +166,8 @@ function exec (command, sudo, cb) {
     stdio: 'inherit'
   })
 
-  proc.on('close', function (output) {
-    cb()
+  proc.on('close', function (code) {
+    cb(code)
   })
 }
 
