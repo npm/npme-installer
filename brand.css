@@ -26,7 +26,7 @@ h1.page-title {
 
 /* The app status (starting, stopping, etc) tile on the dashboard */
  .widget-app-status {
-  background-color: #2A747B;
+  background-color: #a5b3aa;
  }
  .widget-app-status .graphic {
   color: #fff;
@@ -36,18 +36,18 @@ h1.page-title {
 }
 .widget-app-status .actions .btn-warning { /* Cancel, Stop Now */
   color: #fff;
-  background-color: #f0ad4e;
-  border-color: #eea236;
+  background-color: #cb3837;
+  border-color: #bb2827;
 }
 .widget-app-status .actions .btn-success {  /* Start Now */
   color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c;
+  background-color: #cb3837;
+  border-color: #bb2827;
 }
 
 /* The app update tile (up to date, etc) on the dashboard */
 .widget-app-update {
-  background-color: #12B0C5;
+  background-color: #cb3837;
   color: #fff;
 }
 .widget-app-update .title {
@@ -64,13 +64,13 @@ h1.page-title {
 }
 
 .widget-app-backup {
-  background-color: #887880;
+  background-color: #e7f2f7;
 }
 .widget-app-backup .graphic {
-  color: #fff;
+  color: #cb3837;
 }
 .widget-app-backup .title {
-  color: #fff;
+  color: #cb3837;
 }
 
 /* Metrics, null == app not running or unsupported */
@@ -88,7 +88,7 @@ h1.page-title {
   color: #fff;
 }
 .widget-cpu-metrics {
-  background-color: #ec663c;
+  background-color: #a5b3aa;
 }
 .widget-cpu-metrics .metrics-title {
   color: #fff;
@@ -100,7 +100,7 @@ h1.page-title {
   color: #fff;
 }
 .widget-memory-metrics {
-  background-color: #8A4F7D;
+  background-color: #cb3837;
 }
 .widget-memory-metrics .metrics-title {
   color: #fff;
