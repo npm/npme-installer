@@ -4,6 +4,7 @@ var adminCommand = 'replicated admin '
 var chalk = require('chalk')
 var fs = require('fs')
 var path = require('path')
+var publicIp = require('public-ip')
 var request = require('request')
 var spawn = require('child_process').spawn
 var cwd = path.resolve(__dirname, '../')
@@ -72,14 +73,25 @@ function install (yargs) {
 
           console.log(chalk.bold.green('Congrats! Your npm On-Site server is now up and running \\o/'))
           console.log(chalk.bold('\nThere are just a few final steps:\n'))
-          ;[
-            'Access your server via HTTPS on port 8800',
-            'Proceed passed the HTTPS connection security warning (a selfsigned cert is being used initially)',
-            'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
-            'Configure your npm instance & click "Save".',
-            'Visit https://docs.npmjs.com/, for information about using npm On-Site or contact support@npmjs.com'
-          ].forEach(function (s, i) {
-            console.log(chalk.bold('Step ' + (i + 1) + '.') + ' ' + s)
+
+          publicIp.v4(function (err, ip) {
+            var accessMessage
+
+            if (err) {
+              accessMessage = 'Access this server in a web-browser via port 8800 (this will bring you to an admin console)'
+            } else {
+              accessMessage = 'Access this server in a web-browser at https://' + ip + ':8800 (this will bring you to an admin console)'
+            }
+
+            ;[
+              accessMessage,
+              'Proceed passed the HTTPS connection security warning (a selfsigned cert is being used initially)',
+              'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
+              'Configure your npm instance & click "Save".',
+              'Visit https://docs.npmjs.com/, for information about using npm On-Site or contact support@npmjs.com'
+            ].forEach(function (s, i) {
+              console.log(chalk.bold('Step ' + (i + 1) + '.') + ' ' + s)
+            })
           })
         }
       })
@@ -174,6 +186,10 @@ function exec (command, sudo, cb) {
 }
 
 process.on('uncaughtException', function (err) {
+  // if there is no Internet connection
+  // native-dns throws an uncaught ENOENT exception
+  // let's ignore this.
+  if (err.code === 'ENOENT') return
   console.log(chalk.red(err.message))
   process.exit(0)
 })
