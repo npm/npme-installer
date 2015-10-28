@@ -85,7 +85,7 @@ function install (yargs) {
 
             ;[
               accessMessage,
-              'Proceed passed the HTTPS connection security warning (a selfsigned cert is being used initially)',
+              'Proceed passed the HTTPS connection security warning (a self-signed cert is being used initially)',
               'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
               'Configure your npm instance & click "Save".',
               'Visit https://docs.npmjs.com/, for information about using npm On-Site or contact support@npmjs.com'
