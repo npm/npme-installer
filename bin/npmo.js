@@ -62,8 +62,8 @@ function install (yargs) {
       // RHEL7: Red Hat Enterprise Linux Server release 7.1 (Maipo)
       // CENTOS7: CentOS Linux release 7.0.1406 (Core) 
       var redHatOS = fs.readFileSync('/etc/redhat-release').toString();
-      if (redHatOS.indexOf("Enterprise") > 0) {
-        content = content.replace("docker-io", "docker-engine")
+      if (redHatOS.indexOf('Enterprise') > 0) {
+        content = content.replace('docker-io', 'docker-engine')
       }
       fs.writeFileSync(path.resolve(cwd, './install.sh'), content, 'utf-8')
 
