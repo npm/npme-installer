@@ -16,6 +16,7 @@ require('yargs')
   .command('install', 'install the npm On-Site appliance', install)
   .command('ssh', 'ssh into the npm On-Site appliance', ssh)
   .command('add-package', 'add a package to your whitelist', addPackage)
+  .command('remove-package', 'add a package to your whitelist', removePackage)
   .command('reset-follower', 'reset the public registry follower', resetFollower)
   .command('update-license', 'update the license associated with your npm On-Site appliance', updateLicense)
   .version(require('../package').version, 'v')
@@ -100,8 +101,6 @@ function install (yargs) {
 }
 
 function addPackage (yargs) {
-  // we'll swap this out once I get the argv
-  // functionality merged into yargs.
   var argv = yargs
     .usage('$0 package-name[@version]')
     .option('sudo', {
@@ -113,6 +112,23 @@ function addPackage (yargs) {
     .help('h')
     .alias('h', 'help')
     .epilog("add a new package to your appliance's whitelist")
+    .argv
+
+  exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
+}
+
+function removePackage (yargs) {
+  var argv = yargs
+    .usage('$0 package-name')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('remove a package from your registry')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
