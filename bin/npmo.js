@@ -114,7 +114,9 @@ function addPackage (yargs) {
     .epilog("add a new package to your appliance's whitelist")
     .argv
 
-  exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
+  var cmd = adminCommand + argv._.join(' ')
+  if (~cmd.indexOf('@')) cmd += ' --all-versions=false'
+  exec(cmd, argv.sudo, function () {})
 }
 
 function removePackage (yargs) {
