@@ -189,7 +189,7 @@ function ssh (yargs) {
 
 function exec (command, sudo, cb) {
   var commands = ['-c']
-  if (sudo) command = 'sudo ' + command
+  if (sudo) command = 'sudo -E ' + command
   commands.push(command)
 
   var proc = spawn('sh', commands, {
