@@ -4,27 +4,35 @@
 
 One-step-installer for npm On-Site.
 
+## Quickstart
+
+To get up and running as quickly as possible, [see the quickstart guide on the docs site](https://docs.npmjs.com/enterprise/intro).
+
 ## Supported Platforms
 
-Modern versions of Ubuntu (12.04+), Debian, Centos (7+), Red Hat & Fedora
+Modern versions of Ubuntu (12.04+), CentOS/RHEL (7+), Debian (7.7+)
 
 ## Prerequisites
 
-* provision a VM for one of our supported platforms.
-* ensure that a modern version of node is installed on the server.
-  * https://github.com/joyent/node/wiki/installing-node.js-via-package-manager
+You can find [detailed prerequisites](https://docs.npmjs.com/enterprise/requirements) on the docs site.
 
 ## Installing
+
+* [Install Node.js via package manager](https://nodejs.org/en/download/package-manager/)
+* Update npm via `sudo npm i -g npm@latest`
+* Then install `npmo`:
 
 ```shell
 sudo npm install npmo -g --unsafe
 ```
 
-Once installation is complete visit __https://your-server-address:8800__ and bypass the security warning (you can provide your own certificate later to prevent this warning). You will be presented with a management UI which allows you to configure your npm Enterprise appliance.
+Once installation is complete visit __https://your-server-address:8800__ and bypass the security warning (you can provide your own certificate later to prevent this warning). You will be presented with a management UI which allows you to configure your npm On-Site appliance.
+
+You can find [installation details](https://docs.npmjs.com/enterprise/installation) on the docs site.
 
 ## Connecting to the Registry
 
-By default the npm On-Site registry will be availble on __http://your-server-address:8080__.
+By default the npm On-Site registry will be available on __http://your-server-address:8080__.
 
 Simply run:
 
@@ -42,6 +50,8 @@ And publish modules using the corresponding scope name:
   }
 }
 ```
+
+Details on [client configuration](https://docs.npmjs.com/enterprise/client-configuration) and [using npm On-Site](https://docs.npmjs.com/enterprise/using-it) can be found on the docs site.
 
 ## Updating
 
