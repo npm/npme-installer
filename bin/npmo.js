@@ -19,6 +19,7 @@ require('yargs')
   .command('remove-package', 'remove a package from your registry', removePackage)
   .command('reset-follower', 'reset the public registry follower', resetFollower)
   .command('update-license', 'update the license associated with your npm On-Site appliance', updateLicense)
+  .command('manage-tokens', 'manage npm On-Site deploy tokens', manageTokens)
   .version(require('../package').version, 'v')
   .alias('v', 'version')
   .option('sudo', {
@@ -165,6 +166,23 @@ function updateLicense (yargs) {
     .help('h')
     .alias('h', 'help')
     .epilog('update the license on your npm On-Site appliance')
+    .argv
+
+  exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
+}
+
+function manageTokens (yargs) {
+  var argv = yargs
+    .usage('$0')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('manage the tokens on your npm On-Site appliance')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
