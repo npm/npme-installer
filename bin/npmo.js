@@ -20,6 +20,7 @@ require('yargs')
   .command('reset-follower', 'reset the public registry follower', resetFollower)
   .command('update-license', 'update the license associated with your npm On-Site appliance', updateLicense)
   .command('manage-tokens', 'manage npm On-Site deploy tokens', manageTokens)
+  .command('edit-homepage', 'edit the packages displayed on the npmo homepage', editHomepage)
   .version(require('../package').version, 'v')
   .alias('v', 'version')
   .option('sudo', {
@@ -183,6 +184,23 @@ function manageTokens (yargs) {
     .help('h')
     .alias('h', 'help')
     .epilog('manage the tokens on your npm On-Site appliance')
+    .argv
+
+  exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
+}
+
+function editHomepage (yargs) {
+  var argv = yargs
+    .usage('$0')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('edit the packages displayed on the npmo homepage')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
