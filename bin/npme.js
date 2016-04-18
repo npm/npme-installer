@@ -13,14 +13,14 @@ require('yargs')
   .usage('$0 [command] [arguments]')
   .help('h')
   .alias('h', 'help')
-  .command('install', 'install the npm On-Site appliance', install)
-  .command('ssh', 'ssh into the npm On-Site appliance', ssh)
+  .command('install', 'install the npm Enterprise appliance', install)
+  .command('ssh', 'ssh into the npm Enterprise appliance', ssh)
   .command('add-package', 'add a package to your whitelist', addPackage)
   .command('remove-package', 'remove a package from your registry', removePackage)
   .command('reset-follower', 'reset the public registry follower', resetFollower)
-  .command('update-license', 'update the license associated with your npm On-Site appliance', updateLicense)
-  .command('manage-tokens', 'manage npm On-Site deploy tokens', manageTokens)
-  .command('edit-homepage', 'edit the packages displayed on the npmo homepage', editHomepage)
+  .command('update-license', 'update the license associated with your npm Enterprise appliance', updateLicense)
+  .command('manage-tokens', 'manage npm Enterprise deploy tokens', manageTokens)
+  .command('edit-homepage', 'edit the packages displayed on the npme homepage', editHomepage)
   .version(require('../package').version, 'v')
   .alias('v', 'version')
   .option('sudo', {
@@ -49,7 +49,7 @@ function install (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('install a brand new npm On-Site appliance')
+    .epilog('install a brand new npm Enterprise appliance')
     .argv
 
   exec('cp replicated-license-retrieval.json /etc', argv.sudo, function () {
@@ -74,7 +74,7 @@ function install (yargs) {
             exec('cp -f brand.css /etc/replicated/brand/brand.css', argv.sudo, function () {})
           })
 
-          console.log(chalk.bold.green('Congrats! Your npm On-Site server is now up and running \\o/'))
+          console.log(chalk.bold.green('Congrats! Your npm Enterprise server is now up and running \\o/'))
           console.log(chalk.bold('\nThere are just a few final steps:\n'))
 
           publicIp.v4(function (err, ip) {
@@ -91,7 +91,7 @@ function install (yargs) {
               'Proceed passed the HTTPS connection security warning (a self-signed cert is being used initially)',
               'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
               'Configure your npm instance & click "Save".',
-              'Visit https://docs.npmjs.com/, for information about using npm On-Site or contact support@npmjs.com'
+              'Visit https://docs.npmjs.com/, for information about using npm Enterprise or contact support@npmjs.com'
             ].forEach(function (s, i) {
               console.log(chalk.bold('Step ' + (i + 1) + '.') + ' ' + s)
             })
@@ -166,7 +166,7 @@ function updateLicense (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('update the license on your npm On-Site appliance')
+    .epilog('update the license on your npm Enterprise appliance')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
@@ -183,7 +183,7 @@ function manageTokens (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('manage the tokens on your npm On-Site appliance')
+    .epilog('manage the tokens on your npm Enterprise appliance')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
@@ -200,7 +200,7 @@ function editHomepage (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('edit the packages displayed on the npmo homepage')
+    .epilog('edit the packages displayed on the npme homepage')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
@@ -217,7 +217,7 @@ function ssh (yargs) {
     })
     .help('h')
     .alias('h', 'help')
-    .epilog('ssh into the npm On-Site appliance')
+    .epilog('ssh into the npm Enterprise appliance')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})

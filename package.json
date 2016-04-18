@@ -1,8 +1,8 @@
 {
-  "name": "npmo",
+  "name": "npme",
   "version": "3.5.0",
-  "description": "One-step-installer for npm On-Site servers",
-  "bin": "bin/npmo.js",
+  "description": "One-step-installer for npm Enterprise servers",
+  "bin": "bin/npme.js",
   "scripts": {
     "pretest": "standard",
     "postinstall": "node ./bin/npmo.js install"

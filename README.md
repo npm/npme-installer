@@ -1,8 +1,8 @@
-# npm On-Site Installer
+# npm Enterprise Installer
 
 [![Build Status](https://travis-ci.org/npm/npmo-installer.svg?branch=master)](https://travis-ci.org/npm/npmo-installer)
 
-One-step-installer for npm On-Site.
+One-step-installer for npm Enterprise.
 
 ## Quickstart
 
@@ -20,19 +20,19 @@ You can find [detailed prerequisites](https://docs.npmjs.com/enterprise/requirem
 
 * [Install Node.js via package manager](https://nodejs.org/en/download/package-manager/)
 * Update npm via `sudo npm i -g npm@latest`
-* Then install `npmo`:
+* Then install `npme`:
 
 ```shell
-sudo npm install npmo -g --unsafe
+sudo npm install npme -g --unsafe
 ```
 
-Once installation is complete visit __https://your-server-address:8800__ and bypass the security warning (you can provide your own certificate later to prevent this warning). You will be presented with a management UI which allows you to configure your npm On-Site appliance.
+Once installation is complete visit __https://your-server-address:8800__ and bypass the security warning (you can provide your own certificate later to prevent this warning). You will be presented with a management UI which allows you to configure your npm Enterprise appliance.
 
 You can find [installation details](https://docs.npmjs.com/enterprise/installation) on the docs site.
 
 ## Connecting to the Registry
 
-By default the npm On-Site registry will be available on __http://your-server-address:8080__.
+By default the npm Enterprise registry will be available on __http://your-server-address:8080__.
 
 Simply run:
 
