@@ -5,7 +5,8 @@
   "bin": "bin/npme.js",
   "scripts": {
     "pretest": "standard",
-    "postinstall": "node ./bin/npme.js install"
+    "postinstall": "node ./bin/npme.js install",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "yargs": "^3.21.0"
   },
   "devDependencies": {
-    "standard": "^5.1.0"
+    "standard": "^5.1.0",
+    "standard-version": "^2.1.2"
   }
 }
