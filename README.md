@@ -1,6 +1,6 @@
 # npm Enterprise Installer
 
-[![Build Status](https://travis-ci.org/npm/npmo-installer.svg?branch=master)](https://travis-ci.org/npm/npmo-installer)
+[![Build Status](https://travis-ci.org/npm/npme-installer.svg?branch=master)](https://travis-ci.org/npm/npme-installer)
 
 One-step-installer for npm Enterprise.
 
@@ -51,7 +51,7 @@ And publish modules using the corresponding scope name:
 }
 ```
 
-Details on [client configuration](https://docs.npmjs.com/enterprise/client-configuration) and [using npm On-Site](https://docs.npmjs.com/enterprise/using-it) can be found on the docs site.
+Details on [client configuration](https://docs.npmjs.com/enterprise/client-configuration) and [using npm Enterprise](https://docs.npmjs.com/enterprise/using-it) can be found on the docs site.
 
 ## Updating
 
