@@ -21,6 +21,7 @@ require('yargs')
   .command('update-license', 'update the license associated with your npm Enterprise appliance', updateLicense)
   .command('manage-tokens', 'manage npm Enterprise deploy tokens', manageTokens)
   .command('edit-homepage', 'edit the packages displayed on the npme homepage', editHomepage)
+  .command('addon', 'install a third-party addon', addon)
   .version(require('../package').version, 'v')
   .alias('v', 'version')
   .option('sudo', {
@@ -201,6 +202,23 @@ function editHomepage (yargs) {
     .help('h')
     .alias('h', 'help')
     .epilog('edit the packages displayed on the npme homepage')
+    .argv
+
+  exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
+}
+
+function addon (yargs) {
+  var argv = yargs
+    .usage('$0')
+    .option('sudo', {
+      alias: 's',
+      description: 'should shell commands be run as sudo user',
+      boolean: true,
+      default: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .epilog('install a third-party addon')
     .argv
 
   exec(adminCommand + argv._.join(' '), argv.sudo, function () {})
