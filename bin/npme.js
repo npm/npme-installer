@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+require('../lib/check-for-update')()
 var chalk = require('chalk')
 
 require('yargs')
