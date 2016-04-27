@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.7.0"></a>
+# [3.7.0](https://github.com/npm/npme-installer/compare/v3.6.0...v3.7.0) (2016-04-27)
+
+
+### Features
+
+* check for newer npme version via update-notifier ([#131](https://github.com/npm/npme-installer/issues/131)) ([2298157](https://github.com/npm/npme-installer/commit/2298157))
+
+
+
 <a name="3.6.0"></a>
 # [3.6.0](https://github.com/npm/npme-installer/compare/v3.5.0...v3.6.0) (2016-04-22)
 
