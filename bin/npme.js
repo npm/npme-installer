@@ -1,11 +1,17 @@
 #!/usr/bin/env node
 
-require('../lib/check-for-update')()
+var checkForUpdate = require('../lib/check-for-update')
 var chalk = require('chalk')
 
-require('yargs')
+// use hidden duplicate install command for run script
+// which avoids the check-for-update so update-notifier
+// config does not initially belong to root
+var install = require('../cmd/install')
+
+var yargs = require('yargs')
   .usage('$0 [command] [arguments]')
-  .command(require('../cmd/install'))
+  .command(install)
+  .command('autoinstall', false, install)
   .command(require('../cmd/ssh'))
   .command(require('../cmd/add-package'))
   .command(require('../cmd/remove-package'))
@@ -26,7 +32,17 @@ require('yargs')
   .example('$0 add-package lodash', 'add the lodash package to your whitelist')
   .demand(1, 'you must provide a command to run')
   .wrap(88)
-  .argv
+  .strict()
+
+// mimic standard yargs failure handler, but call checkForUpdate()
+yargs.fail(function (msg, err) {
+  checkForUpdate()
+  yargs.showHelp('error')
+  console.error(msg)
+  process.exit(1)
+})
+
+yargs.argv
 
 process.on('uncaughtException', function (err) {
   // if there is no Internet connection
