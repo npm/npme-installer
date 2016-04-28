@@ -1,6 +1,6 @@
 {
   "name": "npme",
-  "version": "3.7.0",
+  "version": "3.7.1",
   "description": "One-step-installer for npm Enterprise servers",
   "bin": "bin/npme.js",
   "scripts": {
