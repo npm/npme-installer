@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.9.0"></a>
+# [3.9.0](https://github.com/npm/npme-installer/compare/v3.6.0...v3.9.0) (2016-04-28)
+
+
+### Bug Fixes
+
+* Do not let update-notifier errors crash the bin ([#132](https://github.com/npm/npme-installer/issues/132)) ([c28d4bb](https://github.com/npm/npme-installer/commit/c28d4bb))
+* have to chown -R to fix update-notifier access ([#134](https://github.com/npm/npme-installer/issues/134)) ([daea8bc](https://github.com/npm/npme-installer/commit/daea8bc)), closes [(#134](https://github.com/(/issues/134)
+* move profile.sh to boot.sh ([#135](https://github.com/npm/npme-installer/issues/135)) ([aad1239](https://github.com/npm/npme-installer/commit/aad1239))
+
+### Features
+
+* added template for booting npm Enterprise on GCE ([#133](https://github.com/npm/npme-installer/issues/133)) ([0be4f8d](https://github.com/npm/npme-installer/commit/0be4f8d))
+* check for newer npme version via update-notifier ([#131](https://github.com/npm/npme-installer/issues/131)) ([2298157](https://github.com/npm/npme-installer/commit/2298157))
+
+
+
 <a name="3.8.0"></a>
 # [3.8.0](https://github.com/npm/npme-installer/compare/v3.7.1...v3.8.0) (2016-04-28)
 
