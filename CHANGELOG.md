@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.9.1"></a>
+## [3.9.1](https://github.com/npm/npme-installer/compare/v3.9.0...v3.9.1) (2016-04-28)
+
+
+### Bug Fixes
+
+* property should be compute/zone rather than zone ([#136](https://github.com/npm/npme-installer/issues/136)) ([8800a69](https://github.com/npm/npme-installer/commit/8800a69))
+
+
+
 <a name="3.9.0"></a>
 # [3.9.0](https://github.com/npm/npme-installer/compare/v3.6.0...v3.9.0) (2016-04-28)
 
