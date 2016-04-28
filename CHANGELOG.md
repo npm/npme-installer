@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.9.2"></a>
+## [3.9.2](https://github.com/npm/npme-installer/compare/v3.9.1...v3.9.2) (2016-04-28)
+
+
+### Bug Fixes
+
+* cannot get google deploy to pick up the zone variable :shurgmoji: ([b9801b7](https://github.com/npm/npme-installer/commit/b9801b7))
+
+
+
 <a name="3.9.1"></a>
 ## [3.9.1](https://github.com/npm/npme-installer/compare/v3.9.0...v3.9.1) (2016-04-28)
 
