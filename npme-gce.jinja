@@ -52,7 +52,7 @@ resources:
               curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
               sudo apt-get install -y nodejs
               sudo npm i -g npm@latest
-              sudo npm install npme -g --unsafe
+              sudo yes No | npm install npme -g --unsafe
               sudo sh -c "sudo curl -XGET https://raw.githubusercontent.com/npm/npme-installer/master/boot.sh >> /etc/boot.sh"
-              sudo chmod 777 /etc/profile.sh
+              sudo chmod 777 /etc/boot.sh
               sudo sh -c "printf \"/etc/boot.sh\" >> /etc/bash.bashrc"
