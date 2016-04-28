@@ -1,7 +1,7 @@
-# documentation on how to write templates.
+# step-by-step guide to writing templates:
 # https://cloud.google.com/deployment-manager/step-by-step-guide/using-template-and-environment-variables
 
-# documentation on various resource types.
+# documentation for resource types:
 # https://cloud.google.com/deployment-manager/configuration/create-configuration-file#declaring_a_resource_type
 
 # boot an instance in zone=us-east1-d
@@ -53,6 +53,6 @@ resources:
               sudo apt-get install -y nodejs
               sudo npm i -g npm@latest
               sudo npm install npme -g --unsafe
-              sudo sh -c "sudo curl -XGET https://gist.githubusercontent.com/nexdrew/161fbab927c6ceb0b5be/raw/ce4adb840439c846e2067c2338083fe5c07c7d4f/99-npme-header >> /etc/profile.sh"
+              sudo sh -c "sudo curl -XGET https://raw.githubusercontent.com/npm/npme-installer/master/boot.sh >> /etc/boot.sh"
               sudo chmod 777 /etc/profile.sh
-              sudo sh -c "printf \"/etc/profile.sh\" >> /etc/bash.bashrc"
+              sudo sh -c "printf \"/etc/boot.sh\" >> /etc/bash.bashrc"
