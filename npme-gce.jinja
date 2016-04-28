@@ -1,0 +1,58 @@
+# documentation on how to write templates.
+# https://cloud.google.com/deployment-manager/step-by-step-guide/using-template-and-environment-variables
+
+# documentation on various resource types.
+# https://cloud.google.com/deployment-manager/configuration/create-configuration-file#declaring_a_resource_type
+
+# boot an instance in zone=us-east1-d
+# gcloud deployment-manager deployments create npme-deployment --config npme.jinja --properties="zone=us-east1-d"
+resources:
+- type: compute.v1.network
+  name: npme-network
+  properties:
+    zone: {{ properties["zone"] }}
+- type: compute.v1.firewall
+  name: npme-firewall
+  properties:
+    zone: {{ properties["zone"] or "zone=us-east1-d" }}
+    network: $(ref.npme-network.selfLink)
+    allowed:
+      - IPProtocol: tcp
+        ports:
+          - "8800"
+          - "8080"
+          - "8081"
+          - "22"
+    sourceRanges:
+      - "0.0.0.0/0"
+- type: compute.v1.instance
+  name: npm-enterprise
+  properties:
+    zone: {{ properties["zone"] }}
+    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/n1-standard-4
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-1404-trusty-v20150909a
+        diskSizeGb: 50
+    networkInterfaces:
+    - network: $(ref.npme-network.selfLink)
+      # Access Config required to give the instance a public IP address
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
+    metadata:
+          items:
+          - key: startup-script
+            value: |
+              #! /bin/bash
+              curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+              sudo apt-get install -y nodejs
+              sudo npm i -g npm@latest
+              sudo npm install npme -g --unsafe
+              sudo sh -c "sudo curl -XGET https://gist.githubusercontent.com/nexdrew/161fbab927c6ceb0b5be/raw/ce4adb840439c846e2067c2338083fe5c07c7d4f/99-npme-header >> /etc/profile.sh"
+              sudo chmod 777 /etc/profile.sh
+              sudo sh -c "printf \"/etc/profile.sh\" >> /etc/bash.bashrc"
