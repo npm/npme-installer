@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.8.0"></a>
+# [3.8.0](https://github.com/npm/npme-installer/compare/v3.7.1...v3.8.0) (2016-04-28)
+
+
+### Bug Fixes
+
+* have to chown -R to fix update-notifier access ([#134](https://github.com/npm/npme-installer/issues/134)) ([daea8bc](https://github.com/npm/npme-installer/commit/daea8bc)), closes [(#134](https://github.com/(/issues/134)
+
+### Features
+
+* added template for booting npm Enterprise on GCE ([#133](https://github.com/npm/npme-installer/issues/133)) ([0be4f8d](https://github.com/npm/npme-installer/commit/0be4f8d))
+
+
+
 <a name="3.7.1"></a>
 ## [3.7.1](https://github.com/npm/npme-installer/compare/v3.7.0...v3.7.1) (2016-04-28)
 
