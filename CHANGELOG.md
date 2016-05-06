@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.10.0"></a>
+# [3.10.0](https://github.com/npm/npme-installer/compare/v3.9.2...v3.10.0) (2016-05-06)
+
+
+### Features
+
+* added a new command for removing third-party addons ([#137](https://github.com/npm/npme-installer/issues/137))([6469c9c](https://github.com/npm/npme-installer/commit/6469c9c))
+
+
+
 <a name="3.9.2"></a>
 ## [3.9.2](https://github.com/npm/npme-installer/compare/v3.9.1...v3.9.2) (2016-04-28)
 
