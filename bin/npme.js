@@ -20,6 +20,7 @@ var yargs = require('yargs')
   .command(require('../cmd/manage-tokens'))
   .command(require('../cmd/edit-homepage'))
   .command(require('../cmd/addon'))
+  .command(require('../cmd/addon-remove'))
   .option('s', {
     alias: 'sudo',
     description: 'should shell commands be run as sudo user',
