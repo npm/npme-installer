@@ -13,7 +13,7 @@ var cmd = {
   options: {
     r: {
       alias: 'release',
-      default: 'docker/stable',
+      default: 'docker',
       description: 'what release of replicated should be used (defaults to stable)',
       type: 'string'
     }
