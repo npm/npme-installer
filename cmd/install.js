@@ -13,6 +13,7 @@ var cmd = {
   options: {
     r: {
       alias: 'release',
+      default: 'docker',
       description: 'what release of replicated should be used (defaults to stable)',
       type: 'string'
     }
@@ -32,7 +33,7 @@ cmd.handler = function (argv) {
 
       fs.writeFileSync(path.resolve(cwd, './install.sh'), content, 'utf-8')
 
-      exec('sh install.sh', argv.sudo, function (code) {
+      exec('bash install.sh', argv.sudo, function (code) {
         if (code !== 0) {
           console.log(chalk.bold.red('oh no! something went wrong during the install...\r\n') +
             chalk.bold.red('contact ') +
