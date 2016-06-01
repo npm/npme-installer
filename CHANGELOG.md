@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.0.0"></a>
+# [4.0.0](https://github.com/npm/npme-installer/compare/v3.10.0...v4.0.0) (2016-06-01)
+
+
+### Features
+
+* switch to docker/stable as our default installation ([#143](https://github.com/npm/npme-installer/issues/143))([01f8d14](https://github.com/npm/npme-installer/commit/01f8d14))
+* use replicated bin if present, fall back to docker admin command ([#142](https://github.com/npm/npme-installer/issues/142))([3700bef](https://github.com/npm/npme-installer/commit/3700bef))
+
+
+### BREAKING CHANGES
+
+* replicated will now run on Docker without a central bin being installed for management
+
+
+
 <a name="3.10.0"></a>
 # [3.10.0](https://github.com/npm/npme-installer/compare/v3.9.2...v3.10.0) (2016-05-06)
 
