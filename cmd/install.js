@@ -1,4 +1,6 @@
 var chalk = require('chalk')
+var boxen = require('boxen')
+var figures = require('figures')
 var fs = require('fs')
 var path = require('path')
 var publicIp = require('public-ip')
@@ -44,27 +46,22 @@ cmd.handler = function (argv) {
             exec('cp -f brand.css /etc/replicated/brand/brand.css', argv.sudo, function () {})
           })
 
-          console.log(chalk.bold.green('Congrats! Your npm Enterprise server is now up and running \\o/'))
-          console.log(chalk.bold('\nThere are just a few final steps:\n'))
-
           publicIp.v4(function (err, ip) {
             var accessMessage
 
             if (err) {
-              accessMessage = 'Access this server in a web-browser via port 8800 (this will bring you to an admin console)'
+              accessMessage = ' Access the admin console in a web-browser via port ' + chalk.bold.cyan(8800)
             } else {
-              accessMessage = 'Access this server in a web-browser at https://' + ip + ':8800 (this will bring you to an admin console)'
+              accessMessage = ' Access the admin console in a web-browser at ' + chalk.bold.cyan('http://' + ip + ':8800')
             }
 
-            ;[
-              accessMessage,
-              'Proceed passed the HTTPS connection security warning (a self-signed cert is being used initially)',
-              'Upload a custom TLS/SSL cert/key or proceed with the provided self-signed pair.',
-              'Configure your npm instance & click "Save".',
-              'Visit https://docs.npmjs.com/, for information about using npm Enterprise or contact support@npmjs.com'
-            ].forEach(function (s, i) {
-              console.log(chalk.bold('Step ' + (i + 1) + '.') + ' ' + s)
-            })
+            console.log(
+              boxen(
+                figures.squareSmall + accessMessage + '\n\n' +
+                figures.tick + ' Visit ' + chalk.bold.cyan('https://docs.npmjs.com/') + ', for information about using npm Enterprise or contact ' + chalk.bold.cyan('support@npmjs.com'),
+                {padding: 1}
+              )
+            )
           })
         }
       })
