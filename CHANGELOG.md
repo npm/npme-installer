@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.1.2"></a>
+## [4.1.2](https://github.com/npm/npme-installer/compare/v4.1.1...v4.1.2) (2016-06-24)
+
+
+### Bug Fixes
+
+* better logic to determine if package spec is versioned ([#147](https://github.com/npm/npme-installer/issues/147)) ([7af7f8e](https://github.com/npm/npme-installer/commit/7af7f8e))
+
+
+
 <a name="4.1.1"></a>
 ## [4.1.1](https://github.com/npm/npme-installer/compare/v4.1.0...v4.1.1) (2016-06-06)
 
