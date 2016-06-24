@@ -15,7 +15,7 @@ var cmd = {
 
 cmd.handler = function (argv) {
   var cmd = adminCommand + argv._.join(' ')
-  if (~cmd.indexOf('@')) cmd += ' --all-versions=false'
+  if (argv._[1].lastIndexOf('@') > 0) cmd += ' --all-versions=false'
   exec(cmd, argv.sudo, function () {})
 }
 
