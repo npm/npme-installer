@@ -12,17 +12,24 @@ cmd.handler = function (argv) {
   inquirer.prompt([
     {
       type: 'input',
-      name: 'upstream',
-      message: 'upstream CouchDB server to verify against'
+      name: 'scan',
+      message: 'we stream all the documents in this database (the replica)'
     },
     {
       type: 'input',
-      name: 'local',
-      message: 'local CouchDB server to verify'
+      name: 'check',
+      message: 'we request each doc in the stream from scan to see if check has the same versions (the primary)'
+    },
+    {
+      type: 'input',
+      name: 'data-directory',
+      message: 'data directory to store missing tarballs to',
+      default: '/usr/local/lib/npme/packages'
     }
   ]).then(function (answers) {
+    console.log(answers)
     console.log('add the following to your crontab:')
-    console.log(chalk.green('0\t*\t*\t*\t*\t ' + npmeBin + ' maintenance --upstream=' + answers.upstream + ' --local=' + answers.local))
+    console.log(chalk.green('0\t*\t*\t*\t*\t ' + npmeBin + ' maintenance --check=' + answers.check + ' --scan=' + answers.scan + ' --data-directory=' + answers['data-directory']))
   })
 }
 
