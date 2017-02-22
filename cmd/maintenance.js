@@ -1,7 +1,5 @@
-var inquirer = require('inquirer')
 var utils = require('../lib/utils')
-var which = require('which')
-var exec = utils.exec
+// var exec = utils.exec
 
 var cmd = {
   desc: "run maintenance against a CouchDB server (make sure it's packages are up-to-date)"
