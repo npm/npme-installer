@@ -12,15 +12,7 @@ var yargs = require('yargs')
   .usage('$0 [command] [arguments]')
   .command(install)
   .command('autoinstall', false, install)
-  .command(require('../cmd/ssh'))
-  .command(require('../cmd/add-package'))
-  .command(require('../cmd/remove-package'))
-  .command(require('../cmd/reset-follower'))
-  .command(require('../cmd/update-license'))
-  .command(require('../cmd/manage-tokens'))
-  .command(require('../cmd/edit-homepage'))
-  .command(require('../cmd/addon'))
-  .command(require('../cmd/addon-remove'))
+  .commandDir('../cmd')
   .option('s', {
     alias: 'sudo',
     description: 'should shell commands be run as sudo user',
