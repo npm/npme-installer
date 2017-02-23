@@ -34,22 +34,25 @@ cmd.builder = function (yargs) {
 }
 
 cmd.handler = function (argv) {
+
+  //process.removeListener('UncaughtException')
   console.log(argv)
 
   var stream = follow(function(data,cb){
     var message = data.name+'\t'+JSON.stringify(data.versions)
 
-    if(argv['dry-run']) {
+    if(argv.dryRun) {
       console.log(message)
       return cb()
     }
 
     follow.repairVersions({
       db: argv.scan,
-      currentDoc: data.scan,
-      newDoc: data.check,
+      oldDoc: data.scan,
+      currentDoc: data.check,
       versions: data.versions,
-      tarHost: argv['tar-host']
+      tarHost: argv.tarHost,
+      dataDirectory: argv.dataDirectory
     },function(err,data){
       if(err) {
         message += "\terror. "+err

@@ -42,6 +42,8 @@ process.on('uncaughtException', function (err) {
   // native-dns throws an uncaught ENOENT exception
   // let's ignore this.
   if (err.code === 'ENOENT') return
-  console.log(chalk.red(err.message))
+  console.log(chalk.red(err.message+'\n'+err.stack))
+
   process.exit(0)
+
 })
