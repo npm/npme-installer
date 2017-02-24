@@ -46,6 +46,8 @@ cmd.handler = function (argv) {
       return cb()
     }
 
+    cb = timerwrap(cb)
+
     follow.repairVersions({
       db: argv.scan,
       oldDoc: data.scan,
@@ -76,3 +78,16 @@ cmd.handler = function (argv) {
 }
 
 module.exports = utils.decorate(cmd, __filename)
+
+
+function timerwrap(cb){
+  var timer
+  return wrapped
+  function wrapped(){
+    clearTimeout(timer)
+    cb.apply(this,arguments)
+  }
+  setTimeout(function(){
+    wrapped() 
+  },60000)
+}
