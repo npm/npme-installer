@@ -51,7 +51,7 @@ cmd.handler = function (argv) {
       return cb()
     }
 
-    cb = timerwrap(cb)
+    cb = timerwrap(cb,data.name)
 
     follow.repairVersions({
       db: argv.scan,
@@ -85,11 +85,12 @@ cmd.handler = function (argv) {
 module.exports = utils.decorate(cmd, __filename)
 
 
-function timerwrap(cb){
+function timerwrap(cb,name){
   var timer
   return wrapped
   function wrapped(){
     clearTimeout(timer)
+    console.log('[timeout] ',name)
     cb.apply(this,arguments)
   }
   setTimeout(function(){
