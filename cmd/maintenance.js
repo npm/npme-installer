@@ -46,6 +46,11 @@ cmd.handler = function (argv) {
       return cb()
     }
 
+    if(data.error) {
+      console.log('[error] '+data.name+' '+data.error)
+      return cb()
+    }
+
     cb = timerwrap(cb)
 
     follow.repairVersions({
