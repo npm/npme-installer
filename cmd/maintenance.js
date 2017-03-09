@@ -12,7 +12,7 @@ cmd.builder = function (yargs) {
       demand: true
     })
     .option('scan', {
-      describe: 'we stream all the documents in this database (the replica).\nexample: http://172.17.0.1:5984/registry\nyou can find this by running `sudo docker ps | grep klaemo | sed \'s/->/ /\' | awk \'{print $(NF-2)}\'`',
+      describe: 'we stream all the documents in this database (the replica).\nexample: http://admin:admin@172.17.0.1:5984/registry\nyou can find this by running `sudo docker ps | grep klaemo | sed \'s/->/ /\' | awk \'{print $(NF-2)}\'`',
       demand: true
     })
     .option('data-directory', {
