@@ -19,39 +19,38 @@ cmd.builder = function (yargs) {
       describe: 'data directory to store missing tarballs',
       default: '/usr/local/lib/npme/packages'
     })
-    .option('tar-host',{
-      describe:"download tarballs from this host instead of the external url for your npme. most likely the host you use for `check`. example: https://theprimary:8080",
-      default:false
+    .option('tar-host', {
+      describe: 'download tarballs from this host instead of the external url for your npme. most likely the host you use for `check`. example: https://theprimary:8080',
+      default: false
     })
-    .option('dry-run',{
-      describe:"only print packages that are missing versions instead of attempting to repair them",
-      default:false
+    .option('dry-run', {
+      describe: 'only print packages that are missing versions instead of attempting to repair them',
+      default: false
     })
-    //.option('ignore-404',{
+    // .option('ignore-404',{
     //  describe:"you may want to update the document with new versions even if the tarball cannot be found.",
     //  default: false
-    //})
+    // })
 }
 
 cmd.handler = function (argv) {
-
-  //process.removeListener('UncaughtException')
+  // process.removeListener('UncaughtException')
   console.log(argv)
 
-  var stream = follow(function(data,cb){
-    var message = data.name+'\t'+JSON.stringify(data.versions)
+  var stream = follow(function (data, cb) {
+    var message = data.name + '\t' + JSON.stringify(data.versions)
 
-    if(argv.dryRun) {
+    if (argv.dryRun) {
       console.log(message)
       return cb()
     }
 
-    if(data.error) {
-      console.log('[error] '+data.name+' '+data.error)
+    if (data.error) {
+      console.log('[error] ' + data.name + ' ' + data.error)
       return cb()
     }
 
-    cb = timerwrap(cb,data.name)
+    cb = timerwrap(cb, data.name)
 
     follow.repairVersions({
       db: argv.scan,
@@ -60,40 +59,39 @@ cmd.handler = function (argv) {
       versions: data.versions,
       tarHost: argv.tarHost,
       dataDirectory: argv.dataDirectory
-    },function(err,data){
-      if(err) {
-        message += "\terror. "+err
+    }, function (err, data) {
+      if (err) {
+        message += '\terror. ' + err
       } else {
-        message += "\trepaired!"
+        message += '\trepaired!'
       }
 
       console.log(message)
 
       cb()
     })
-
-  },{
+  }, {
     check: argv.check,
     scan: argv.scan
   })
 
-  setInterval(function(){
+  setInterval(function () {
     console.log(stream.sequence)
-  },5000).unref()
+  }, 5000).unref()
 }
 
 module.exports = utils.decorate(cmd, __filename)
 
-
-function timerwrap(cb,name){
+function timerwrap (cb, name) {
   var timer
-  return wrapped
-  function wrapped(){
+  function wrapped () {
     clearTimeout(timer)
-    console.log('[timeout] ',name)
-    cb.apply(this,arguments)
+    console.log('[timeout] ', name)
+    cb.apply(this, arguments)
   }
-  setTimeout(function(){
-    wrapped() 
-  },60000)
+  setTimeout(function () {
+    wrapped()
+  }, 60000)
+
+  return wrapped
 }

@@ -6,7 +6,8 @@
   "scripts": {
     "pretest": "standard",
     "postinstall": "node ./bin/npme.js autoinstall",
-    "release": "standard-version"
+    "release": "standard-version",
+    "test": "tape test/*.js"
   },
   "repository": {
     "type": "git",
@@ -32,13 +33,13 @@
     "once": "^1.4.0",
     "public-ip": "^1.2.0",
     "request": "^2.79.0",
+    "standard": "^9.0.1",
     "update-notifier": "^0.6.3",
     "which": "^1.2.12",
     "yargs": "^7.0.0-alpha.1"
   },
   "devDependencies": {
     "nyc": "^10.1.2",
-    "standard": "^6.0.8",
     "standard-version": "^2.1.2",
     "tape": "^4.6.3"
   }
