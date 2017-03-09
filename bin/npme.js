@@ -33,14 +33,16 @@ yargs.fail(function (msg, err) {
   yargs.showHelp('error')
   console.error(msg)
   process.exit(1)
-})
+}).argv
+
+
 
 process.on('uncaughtException', function (err) {
   // if there is no Internet connection
   // native-dns throws an uncaught ENOENT exception
   // let's ignore this.
   if (err.code === 'ENOENT') return
-  console.log(chalk.red(err.message + '\n' + err.stack))
+  console.log(chalk.red(err.message))
 
   process.exit(0)
 })
