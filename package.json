@@ -36,7 +36,7 @@
     "standard": "^9.0.1",
     "update-notifier": "^0.6.3",
     "which": "^1.2.12",
-    "yargs": "^7.0.0-alpha.1"
+    "yargs": "^7.0.2-candidate.1"
   },
   "devDependencies": {
     "nyc": "^10.1.2",
