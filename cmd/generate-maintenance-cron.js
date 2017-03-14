@@ -5,7 +5,7 @@ var which = require('which')
 var url = require('url')
 var request = require('request')
 var fs = require('fs')
-
+var path = require('path')
 
 var cmd = {
   desc: "generate a cron tab line for npme's CouchDB maintenace script"
@@ -41,9 +41,9 @@ cmd.handler = function (argv) {
           input = cleanCheckUrl(input)
         }
 
-        console.log('\nchecking '+input)
+        process.stdout.write(('  ...checking '+input)
 
-        request.get(url.resolve(input,'./_changes')+"?start=1&limit=20",function(err,res,body){
+        request.get(input+'/_changes'+"?start=1&limit=20",function(err,res,body){
           if(err) {
             return done(err+'')
           }
@@ -56,6 +56,9 @@ cmd.handler = function (argv) {
             if(res.statusCode === 404) {
               message += '\ncould not find the database name specified by the url.'
             } else if (res.statusCode === 401) {
+              // This flag is set here to allow someone to submit credentials that dont have write access.
+              // they have to type them twice but this allows folks to generate the command and figure it out later.
+              // also makes it possible to test generating on replicate.npmjs.com =P
               failedScanValidate = true
               message += '\nincorrect username and password provided. please replace '+url.parse(input).auth+' in the url.'
             }
@@ -114,7 +117,8 @@ cmd.handler = function (argv) {
           if(err) { 
             return done(err+'')
           } else if(res.statusCode === 200) {
-            var versions = json(body).versions||{}
+            var checkPackageMetadata = json(body)
+            var versions = checkPackageMetadata.versions||{}
             var dist = Object.keys(versions)[0]||{}.dist
             if(dist.tarball){
               var parsed = url.parse(dist).host           
@@ -132,7 +136,10 @@ cmd.handler = function (argv) {
       message: 'data directory to store missing tarballs',
       default: '/usr/local/lib/npme/packages',
       validate:function(input){
+        // so it's bad if they repair their instance to the wrong data dir.
+        // because versions will exist but tarballs wont.
         var done = this.async()
+
         fs.readdir(input,function(err,files){
           done(err,files?true:false)
         })
@@ -152,7 +159,7 @@ cmd.handler = function (argv) {
           return 'please provide a valid url'
         }
         var done = this.async()
-        console.log("\n attempting to contact "+input)
+        process.stdout.write(".. attempting to contact "+input)
         request.get(input,function(err){
           done(err,err?false:true)
         })
@@ -205,7 +212,7 @@ function cleanCheckUrl(check){
 }
 
 function canCouchdb(answers,cb){
-  request.get(url.resolve(answers.check,'/_active_tasks'),function(err,res,body){
+  request.get(url.resolve(answers.scan,'/_active_tasks'),function(err,res,body){
     if(err){
       console.log('ERROR: scan\n could not request check couchdb:\n'+err)
     } else if(res.statusCode != 200){
