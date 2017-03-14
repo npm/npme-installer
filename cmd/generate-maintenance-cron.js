@@ -186,7 +186,7 @@ cmd.handler = function (argv) {
       }
 
       console.log('please test the command now by performing a "dry run". run:')
-      console.log(chalk.green(cmd)+' --dry-run\n')
+      console.log(chalk.green(cmd+' --dry-run')+'\n')
 
       console.log('if you prefer to run this manually. run:')
       console.log(chalk.green(cmd)+'\n')
