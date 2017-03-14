@@ -41,7 +41,7 @@ cmd.handler = function (argv) {
           input = cleanCheckUrl(input)
         }
 
-        process.stdout.write(('  ...checking '+input)
+        process.stdout.write('  ...checking '+input)
 
         request.get(input+'/_changes'+"?start=1&limit=20",function(err,res,body){
           if(err) {
