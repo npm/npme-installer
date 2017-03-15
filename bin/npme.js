@@ -12,15 +12,7 @@ var yargs = require('yargs')
   .usage('$0 [command] [arguments]')
   .command(install)
   .command('autoinstall', false, install)
-  .command(require('../cmd/ssh'))
-  .command(require('../cmd/add-package'))
-  .command(require('../cmd/remove-package'))
-  .command(require('../cmd/reset-follower'))
-  .command(require('../cmd/update-license'))
-  .command(require('../cmd/manage-tokens'))
-  .command(require('../cmd/edit-homepage'))
-  .command(require('../cmd/addon'))
-  .command(require('../cmd/addon-remove'))
+  .commandDir('../cmd')
   .option('s', {
     alias: 'sudo',
     description: 'should shell commands be run as sudo user',
@@ -41,9 +33,9 @@ yargs.fail(function (msg, err) {
   yargs.showHelp('error')
   console.error(msg)
   process.exit(1)
-})
+}).argv
 
-yargs.argv
+
 
 process.on('uncaughtException', function (err) {
   // if there is no Internet connection
@@ -51,5 +43,6 @@ process.on('uncaughtException', function (err) {
   // let's ignore this.
   if (err.code === 'ENOENT') return
   console.log(chalk.red(err.message))
+
   process.exit(0)
 })
