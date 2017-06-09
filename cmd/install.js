@@ -60,7 +60,7 @@ cmd.handler = function (argv) {
       fs.writeFileSync(path.resolve(cwd, './install.sh'), content, 'utf-8')
       var commandSegments = [ 'bash', 'install.sh' ]
       if( argv.u ) {
-        commandSegments.push( 'bypass-storagedrive-warnings' )
+        commandSegments.push( 'bypass-storagedriver-warnings' )
         if( !argv.p ) {
           commandSegments.push( 'no-proxy' )
         }
