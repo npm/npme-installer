@@ -30,6 +30,35 @@ Once installation is complete visit __https://your-server-address:8800__ and byp
 
 You can find [installation details](https://docs.npmjs.com/enterprise/installation) on the docs site.
 
+### Unattended / Automated Installations
+```shell
+sudo npm install npme -g --ignore-scripts
+```
+
+To perform an installation with this tool using automation tooling, you will need to specify additional arguments to the command line. Most commonly, you will need to supply:
+
+ * `-u` - the unattended install flag itself
+ * `-i` - the IP address of the server's eth0 interface
+ * `-e` - the public facing IP
+
+ The full list of command line arguments for the install command is here:
+
+```shell
+-s, --sudo                should shell commands be run as sudo user
+                                                             [boolean] [default: true]
+-r, --release             what release of replicated should be used (defaults to
+                          stable)                         [string] [default: "docker"]
+-d, --docker-version      the specific Docker version to use                  [string]
+-i, --internal-address    the private ip address of the eth0 adapter          [string]
+-e, --external-address    the public facing ip address for the server         [string]
+-p, --http-proxy          sets the HTTP proxy for Docker and Replicated       [string]
+-u, --unattended-install  allows for unattended install to succeed
+```
+
+```shell
+npme install -s -u -i 172.10.1.1 -e 52.10.0.0
+```
+
 ## Connecting to the Registry
 
 By default the npm Enterprise registry will be available on __http://your-server-address:8080__.
