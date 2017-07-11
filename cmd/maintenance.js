@@ -27,10 +27,9 @@ cmd.builder = function (yargs) {
       describe: 'only print packages that are missing versions instead of attempting to repair them',
       default: false
     })
-    // .option('ignore-404',{
-    //  describe:"you may want to update the document with new versions even if the tarball cannot be found.",
-    //  default: false
-    // })
+    .option('shared-fetch-secret',{
+      describe: 'secret to populate when interacting with primary server.'
+    })
 }
 
 cmd.handler = function (argv) {
@@ -58,7 +57,8 @@ cmd.handler = function (argv) {
       currentDoc: data.check,
       versions: data.versions,
       tarHost: argv.tarHost,
-      dataDirectory: argv.dataDirectory
+      dataDirectory: argv.dataDirectory,
+      sharedFetchSecret: argv.sharedFetchSecret
     }, function (err, data) {
       if (err) {
         message += '\terror. ' + err
@@ -72,7 +72,8 @@ cmd.handler = function (argv) {
     })
   }, {
     check: argv.check,
-    scan: argv.scan
+    scan: argv.scan,
+    sharedFetchSecret: argv.sharedFetchSecret
   })
 
   setInterval(function () {
