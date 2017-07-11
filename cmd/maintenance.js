@@ -27,7 +27,7 @@ cmd.builder = function (yargs) {
       describe: 'only print packages that are missing versions instead of attempting to repair them',
       default: false
     })
-    .option('shared-fetch-secret',{
+    .option('shared-fetch-secret', {
       describe: 'secret to populate when interacting with primary server.'
     })
 }

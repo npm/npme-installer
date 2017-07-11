@@ -32,7 +32,7 @@ var cmd = {
     e: {
       alias: 'external-address',
       description: 'the public facing ip address for the server',
-      type: 'string' 
+      type: 'string'
     },
     p: {
       alias: 'http-proxy',
@@ -59,27 +59,27 @@ cmd.handler = function (argv) {
 
       fs.writeFileSync(path.resolve(cwd, './install.sh'), content, 'utf-8')
       var commandSegments = [ 'bash', 'install.sh' ]
-      if( argv.u ) {
-        commandSegments.push( 'bypass-storagedriver-warnings' )
-        if( !argv.p ) {
-          commandSegments.push( 'no-proxy' )
+      if (argv.u) {
+        commandSegments.push('bypass-storagedriver-warnings')
+        if (!argv.p) {
+          commandSegments.push('no-proxy')
         }
       }
-      if( argv.e ) {
-        commandSegments.push( 'public-address=' + argv.e )
+      if (argv.e) {
+        commandSegments.push('public-address=' + argv.e)
       }
-      if( argv.i ) {
-        commandSegments.push( 'private-address=' + argv.i )
+      if (argv.i) {
+        commandSegments.push('private-address=' + argv.i)
       }
-      if( argv.d ) {
-        commandSegments.push( 'docker-version=' + argv.d )
+      if (argv.d) {
+        commandSegments.push('docker-version=' + argv.d)
       }
-      if( argv.p ) {
-        commandSegments.push( 'http-proxy=' + argv.p )
+      if (argv.p) {
+        commandSegments.push('http-proxy=' + argv.p)
       }
-      var commandLine = commandSegments.join( ' ' )
-      
-      exec( commandLine, argv.sudo, function (code) {
+      var commandLine = commandSegments.join(' ')
+
+      exec(commandLine, argv.sudo, function (code) {
         if (code !== 0) {
           console.log(chalk.bold.red('oh no! something went wrong during the install...\r\n') +
             chalk.bold.red('contact ') +

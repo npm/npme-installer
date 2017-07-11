@@ -28,14 +28,12 @@ var yargs = require('yargs')
   .strict()
 
 // mimic standard yargs failure handler, but call checkForUpdate()
-yargs.fail(function (msg, err) {
+yargs.fail(function (msg, err) { // eslint-disable-line
   checkForUpdate()
   yargs.showHelp('error')
   console.error(msg)
   process.exit(1)
 }).argv
-
-
 
 process.on('uncaughtException', function (err) {
   // if there is no Internet connection
