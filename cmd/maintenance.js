@@ -92,7 +92,7 @@ function timerwrap (cb, name) {
   }
   setTimeout(function () {
     wrapped()
-  }, 60000)
+  }, 180000)
 
   return wrapped
 }
